@@ -2,7 +2,7 @@
   <section>
     <ol>
       <li v-for="coin in topCoins">
-        {{ coin.symbol}}
+        <app-top-coin :coin="coin"></app-top-coin>
       </li>
     </ol>
 
@@ -11,7 +11,14 @@
 
 <script>
   import { mapActions, mapGetters } from 'vuex';
+  import TopCoin from './TopCoin.vue';
   export default {
+
+    created() {
+      if(this.topCoins.length < 10) {
+        this.fetchTopCoins();
+      }
+    },
     computed: {
       ...mapGetters([
         'topCoins'
@@ -22,11 +29,10 @@
         'fetchTopCoins'
       ])
     },
-    created() {
-      if(this.topCoins.length < 10) {
-        this.fetchTopCoins();
-      }
+    components: {
+      'app-top-coin': TopCoin
     }
+
   }
 </script>
 

@@ -8,6 +8,7 @@ Vue.use(Vuex);
 
 const state = {
   topCoins: [],
+  currency: "usd"
 };
 
 const store = new Vuex.Store({

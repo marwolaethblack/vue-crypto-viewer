@@ -6,7 +6,7 @@ export const fetchTopCoins = ({ commit, state }) => {
       .then(result => {
         commit('setTopCoins', result.data);
       })
-      .then(error => {
+      .catch(error => {
         console.log(error);
       });
 }
