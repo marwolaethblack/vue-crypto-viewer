@@ -9,7 +9,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'TopCoinsList',
+      name: 'Dashboard',
       component: Dashboard
     }
   ]
