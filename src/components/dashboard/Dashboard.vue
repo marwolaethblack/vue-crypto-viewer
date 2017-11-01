@@ -8,7 +8,7 @@
 <script>
   import { mapActions, mapGetters } from 'vuex';
   import TopCoinList from './TopCoinsList.vue';
-  import GraphData from './GraphData.vue';
+  import GraphData from './ChartData.vue';
   export default {
     created() {
       if(this.topCoins.length < 10) {
