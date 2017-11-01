@@ -8,8 +8,9 @@ Vue.use(Vuex);
 
 const state = {
   topCoins: [],
-  currency: "usd",
+  currency: "USD",
   selectedCoin: "BTC",
+  exchange: "CCCAGG",
   loading: [],
   coinHistory: {}
 };

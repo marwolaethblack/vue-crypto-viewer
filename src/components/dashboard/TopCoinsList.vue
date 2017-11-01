@@ -1,7 +1,7 @@
 <template>
   <section>
-    <ol>
-      <li v-for="coin in topCoins">
+    <ol class="level is-mobile">
+      <li v-for="coin in topCoins" class="level-item">
         <app-top-coin-list-item :coin="coin"
         ></app-top-coin-list-item>
       </li>
@@ -21,5 +21,7 @@
 </script>
 
 <style>
-
+.level {
+  overflow-x: scroll;
+}
 </style>

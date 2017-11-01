@@ -19,7 +19,7 @@
   export default {
 
     computed: {
-      ...mapGetters(['coinHistory', 'selectedCoin', 'loading']),
+      ...mapGetters(['coinHistory', 'selectedCoin', 'loading', 'currency', 'exchange']),
       isCoinHistoryLoading() {
         if(this.loading.length != 0) {
           return this.loading.indexOf('coinHistory') === -1 ? false : true;
@@ -38,7 +38,12 @@
 
     created() {
       if(!this.coinHistory.hasOwnProperty('Data')) {
-        this.fetchCoinHistory(this.selectedCoin);
+        const payload = {
+          currency: this.currency,
+          coin: this.selectedCoin,
+          exchange: this.exchange,
+        };
+        this.fetchCoinHistory(payload);
       }
     }
 

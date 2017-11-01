@@ -1,5 +1,5 @@
 <template>
-<article @click="changeSelectedCoin(coin.symbol)">
+<article @click="changeSelectedCoin( { coin: coin.symbol, currency, exchange })">
   <figure>
     <img :src="`static/img/coins/${coin.img}`"
          :key="coin.rank"
@@ -9,7 +9,7 @@
       <p>{{ coin.symbol }}</p>
       <p>{{ coin.name }}</p>
     </figcaption>
-    <span>{{ coin[`price_${currency}`] + "$" }}</span>
+    <span>{{ price }}</span>
   </figure>
 </article>
 </template>
@@ -21,7 +21,13 @@
     props: ['coin'],
 
     computed: {
-      ...mapGetters(['currency']),
+      ...mapGetters(['currency', 'exchange']),
+      price() {
+        const parsedNumber = this.coin[`price_${this.currency.toLowerCase()}`];
+        if(parsedNumber) {
+          return parsedNumber.toLocaleString() + " " + this.currency;
+        }
+      }
     },
 
     methods: {

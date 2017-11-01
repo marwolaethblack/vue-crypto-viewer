@@ -6,6 +6,7 @@
 
 <script>
   import moment from 'moment';
+  import { mapGetters } from 'vuex';
 
   export default {
     mounted() {
@@ -13,12 +14,15 @@
     },
 
     computed: {
+      ...mapGetters(['currency']),
+      //Parsed price data from request
+      //Returns array of arrays
       parseData() {
         const data = [];
         this.coinHistory.Data.forEach(priceData => {
           const {high, low, open, close} = priceData;
           const date = moment.unix(priceData.time).format('Do MMM');
-          data.push([date, low, open, close, high, `Open: ${open}$\nHigh: ${high}$\nLow: ${low}$\nClose: ${close}$`]);
+          data.push([date, low, open, close, high, `Open: ${open}${this.currency}\nHigh: ${high}${this.currency}\nLow: ${low}${this.currency}\nClose: ${close}${this.currency}`]);
         });
         return data;
       },

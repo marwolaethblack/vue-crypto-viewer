@@ -24,3 +24,7 @@ export const loadItemFinished = (state, payload) => {
 export const setCoinHistory = (state, payload) => {
   state.coinHistory = payload;
 }
+
+export const setCurrency = (state, payload) => {
+  state.currency = payload;
+}
