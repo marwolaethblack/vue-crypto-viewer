@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {selectedCoin} from "./getters";
 
 export const fetchTopCoins = ({ commit, state }, payload) => {
 
@@ -45,7 +46,16 @@ export const fetchCoinHistory = ({ commit }, payload) => {
 
 }
 
-export const changeCurrency = ({ commit }, payload) => {
+export const changeCurrency = ({ commit, state }, payload) => {
     commit('setCurrency', payload);
     fetchTopCoins({ commit }, payload);
+    const { exchange, currency, selectedCoin} = state;
+    const historyPayload = {
+      exchange,
+      currency,
+      coin: selectedCoin
+
+    };
+    fetchCoinHistory({ commit }, historyPayload);
+
 };
