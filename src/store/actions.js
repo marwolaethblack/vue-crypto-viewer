@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {selectedCoin} from "./getters";
 
+//Payload is the currency symbol e.g. "USD" "DKK"
 export const fetchTopCoins = ({ commit, state }, payload) => {
 
     commit('loadItem', 'topCoins');
@@ -18,32 +19,25 @@ export const fetchTopCoins = ({ commit, state }, payload) => {
 
 }
 
+//Payload is the coins symbol e.g. "BTC"
 export const changeSelectedCoin = ({ commit, state }, payload) => {
-  if(payload.coin != state.selectedCoin) {
-    commit('selectCoin', payload.coin);
+  if(payload != state.selectedCoin) {
+    commit('selectCoin', payload);
     //Load new coin history on selected coin change
-    fetchCoinHistory({ commit }, payload);
+    fetchCoinHistory({ commit, state });
   }
 }
 
 
-//Payload is an object in the form of {
-//  exchange,
-//  currency,
-//  coin,
-//  type
-//}
 
-export const fetchCoinHistory = ({ commit }, payload) => {
+export const fetchCoinHistory = ({ commit, state }) => {
 
-  const { exchange, currency, coin } = payload;
-  const type = payload.type || 'month';
-  console.log(currency);
+  const { exchange, currency, selectedCoin, chartType } = state;
 
   commit('loadItem', 'coinHistory');
 
 
-  axios.get(`/api/coins/${coin}/history?type=${type}&e=${exchange}&currency=${currency}`)
+  axios.get(`/api/coins/${selectedCoin}/history?type=${chartType}&e=${exchange}&currency=${currency}`)
     .then(result => {
       commit('setCoinHistory', result.data);
       commit('loadItemFinished', 'coinHistory');
@@ -55,21 +49,21 @@ export const fetchCoinHistory = ({ commit }, payload) => {
 
 }
 
+//Payload is the currency symbol e.g "DKK" "USD"
 export const changeCurrency = ({ commit, state }, payload) => {
     commit('setCurrency', payload);
 
     //Reloads top coins with new currency
     fetchTopCoins({ commit }, payload);
 
-    //Pulls current data from state to include in payload
-    const { exchange, currency, selectedCoin} = state;
-    const historyPayload = {
-      exchange,
-      currency,
-      coin: selectedCoin
-
-    };
     //Reloads coin price graphs with new currency
-    fetchCoinHistory({ commit }, historyPayload);
+    fetchCoinHistory({ commit, state });
 
+};
+
+export const changeChartType = ({ commit, state }, payload) => {
+  commit('setChartType', payload);
+
+  //Reloads graph with new data
+  fetchCoinHistory({ commit, state });
 };

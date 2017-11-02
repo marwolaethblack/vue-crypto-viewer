@@ -1,32 +1,54 @@
 <template>
   <div>
     <h4>Show data from</h4>
-    <button @click="fetchCoinHistory(payload('month'))">Last 30 days</button>
-    <button @click="fetchCoinHistory(payload('24h'))">Last 24 hours</button>
-    <button @click="fetchCoinHistory(payload('6months'))">Last 6 months</button>
-    <button @click="fetchCoinHistory(payload('year'))">Last year</button>
-    <button @click="fetchCoinHistory(payload('all'))">All time</button>
+    <button v-for="type in chartTypes" @click="changeChartType(type)">{{ nicerChartTypeName(type) }}</button>
   </div>
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+  import chartTypes from '../../constants/chartTypes';
 
   export default {
 
-    methods: {
-      payload(type) {
-        const { exchange, currency, selectedCoin } = this;
-        return {
-          exchange,
-          currency,
-          coin: selectedCoin,
-          type
-        }
+    data() {
+      return {
+        chartTypes
       }
     },
 
-    props: ['fetchCoinHistory', 'selectedCoin', 'currency', 'exchange']
+    methods: {
+      ...mapActions(['changeChartType']),
+      nicerChartTypeName(type) {
+        switch(type) {
+          case 'month': {
+            return 'Last 30 days';
+            break;
+          }
 
+          case '24h': {
+            return 'Last 24 hours';
+            break;
+          }
+
+          case '6months': {
+            return 'Last 6 months';
+            break;
+          }
+
+          case 'year': {
+            return 'Last year';
+            break;
+          }
+
+          case 'all': {
+            return 'All time';
+            break;
+          }
+          default: break;
+        }
+      }
+    },
   }
 
 

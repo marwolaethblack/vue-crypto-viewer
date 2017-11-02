@@ -12,7 +12,8 @@ const state = {
   selectedCoin: "BTC",
   exchange: "CCCAGG",
   loading: [],
-  coinHistory: {}
+  coinHistory: {},
+  chartType: 'month'
 };
 
 const store = new Vuex.Store({

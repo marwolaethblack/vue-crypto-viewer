@@ -7,11 +7,7 @@
       <!--Chart-->
       <app-Chart :coinHistory="coinHistory" style="width: 900px; height: 500px;"></app-Chart>
       <!--Chart buttons e.g graph of prices of this week, month , year...-->
-      <app-ChartButtons :fetchCoinHistory="fetchCoinHistory"
-                        :currency="currency"
-                        :selectedCoin="selectedCoin"
-                        :exchange="exchange"
-      ></app-ChartButtons>
+      <app-ChartButtons ></app-ChartButtons>
     </div>
   </div>
 </template>
@@ -25,7 +21,7 @@
   export default {
 
     computed: {
-      ...mapGetters(['coinHistory', 'selectedCoin', 'loading', 'currency', 'exchange']),
+      ...mapGetters(['coinHistory', 'selectedCoin', 'loading']),
       isCoinHistoryLoading() {
         if(this.loading.length != 0) {
           return this.loading.indexOf('coinHistory') === -1 ? false : true;
@@ -46,12 +42,7 @@
     created() {
       //Check if coinHistory loaded from API if not load
       if(!this.coinHistory.hasOwnProperty('Data')) {
-        const payload = {
-          currency: this.currency,
-          coin: this.selectedCoin,
-          exchange: this.exchange,
-        };
-        this.fetchCoinHistory(payload);
+        this.fetchCoinHistory();
       }
     }
 

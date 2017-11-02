@@ -28,3 +28,7 @@ export const setCoinHistory = (state, payload) => {
 export const setCurrency = (state, payload) => {
   state.currency = payload;
 }
+
+export const setChartType = (state, payload) => {
+  state.chartType = payload;
+}
