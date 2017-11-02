@@ -19,9 +19,29 @@
       //Returns array of arrays
       parseData() {
         const data = [];
+        let format = 'Do MMM';
+        const type = this.coinHistory.TimeTo - this.coinHistory.TimeFrom;
+
+        switch(type) {
+          //24hr
+          case 86400: {
+            format = 'h A UTC Z';
+            break;
+          }
+          //30days
+          case 2592000: {
+            format = 'Do MMM';
+            break;
+          }
+
+          default: {
+            format = 'Do MMM YYYY';
+            break;
+          }
+        }
         this.coinHistory.Data.forEach(priceData => {
           const {high, low, open, close} = priceData;
-          const date = moment.unix(priceData.time).format('Do MMM');
+          const date = moment.unix(priceData.time).format(format);
           data.push([date, low, open, close, high, `Open: ${open}${this.currency}\nHigh: ${high}${this.currency}\nLow: ${low}${this.currency}\nClose: ${close}${this.currency}`]);
         });
         return data;

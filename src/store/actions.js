@@ -26,10 +26,19 @@ export const changeSelectedCoin = ({ commit, state }, payload) => {
   }
 }
 
+
+//Payload is an object in the form of {
+//  exchange,
+//  currency,
+//  coin,
+//  type
+//}
+
 export const fetchCoinHistory = ({ commit }, payload) => {
 
   const { exchange, currency, coin } = payload;
   const type = payload.type || 'month';
+  console.log(currency);
 
   commit('loadItem', 'coinHistory');
 
@@ -48,7 +57,11 @@ export const fetchCoinHistory = ({ commit }, payload) => {
 
 export const changeCurrency = ({ commit, state }, payload) => {
     commit('setCurrency', payload);
+
+    //Reloads top coins with new currency
     fetchTopCoins({ commit }, payload);
+
+    //Pulls current data from state to include in payload
     const { exchange, currency, selectedCoin} = state;
     const historyPayload = {
       exchange,
@@ -56,6 +69,7 @@ export const changeCurrency = ({ commit, state }, payload) => {
       coin: selectedCoin
 
     };
+    //Reloads coin price graphs with new currency
     fetchCoinHistory({ commit }, historyPayload);
 
 };

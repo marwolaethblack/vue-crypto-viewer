@@ -4,9 +4,14 @@
     <app-loader v-if="isCoinHistoryLoading" style="width: 900px; height: 500px;"></app-loader>
     <div v-else style="width: 900px; height: 500px;">
       <p >{{ selectedCoin }}</p>
-      <!--Graph-->
+      <!--Chart-->
       <app-Chart :coinHistory="coinHistory" style="width: 900px; height: 500px;"></app-Chart>
-      <!--Graph buttons e.g graph of prices of this week, month , year...-->
+      <!--Chart buttons e.g graph of prices of this week, month , year...-->
+      <app-ChartButtons :fetchCoinHistory="fetchCoinHistory"
+                        :currency="currency"
+                        :selectedCoin="selectedCoin"
+                        :exchange="exchange"
+      ></app-ChartButtons>
     </div>
   </div>
 </template>
@@ -15,6 +20,7 @@
   import { mapActions, mapGetters } from 'vuex';
   import Loader from '../Loader.vue';
   import Chart from './Chart.vue';
+  import ChartButtons from './ChartButtons.vue';
 
   export default {
 
@@ -33,10 +39,12 @@
 
     components: {
       'app-loader': Loader,
-      'app-Chart': Chart
+      'app-Chart': Chart,
+      'app-ChartButtons': ChartButtons
     },
 
     created() {
+      //Check if coinHistory loaded from API if not load
       if(!this.coinHistory.hasOwnProperty('Data')) {
         const payload = {
           currency: this.currency,
