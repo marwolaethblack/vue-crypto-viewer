@@ -1,6 +1,6 @@
 {
-  "name": "vue-crypto-viewer",
-  "short_name": "vue-crypto-viewer",
+  "name": "CryptoVuewer",
+  "short_name": "CryptoVuewer",
   "icons": [
     {
       "src": "/static/img/icons/android-chrome-192x192.png",

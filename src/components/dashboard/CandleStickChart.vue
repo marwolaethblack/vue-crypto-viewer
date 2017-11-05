@@ -1,6 +1,7 @@
 <template>
   <div>
-    Chart
+    OHLC chart
+    {{ error }}
   </div>
 </template>
 
@@ -9,8 +10,21 @@
   import parseHistoryData from '../../helpers/parseHistoryData';
 
   export default {
+
+    data() {
+      return {
+        error: ""
+      }
+    },
+
     mounted() {
-      this.loadChart();
+      const { Response } = this.coinHistory;
+      if(Response === 'Error') {
+        this.error = "The market does not exist for this coin pair, try changing the exchange or currency";
+      } else {
+        this.error = "";
+        this.loadChart();
+      }
     },
 
     computed: {

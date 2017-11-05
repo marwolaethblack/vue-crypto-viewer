@@ -1,12 +1,12 @@
 <template>
   <div id="app">
       <app-header></app-header>
-      <router-view></router-view>
+      <router-view class="container"></router-view>
   </div>
 </template>
 
 <script>
-  import Header from './components/layout/Header.vue';
+  import Header from './components/layout/Header/Header.vue';
 
   export default {
     name: 'app',

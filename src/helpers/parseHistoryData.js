@@ -12,7 +12,7 @@ const parseData = (coinHistory, currency) => {
     switch(type) {
       //24hr
       case 86400: {
-        format = 'h A UTC Z';
+        format = 'HH:MM UTC Z';
         break;
       }
       //30days

@@ -13,7 +13,8 @@ const state = {
   exchange: "CCCAGG",
   loading: [],
   coinHistory: {},
-  chartType: 'month'
+  chartType: 'month',
+  coinDetails: {}
 };
 
 const store = new Vuex.Store({

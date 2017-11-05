@@ -11,3 +11,5 @@ export const loading = state => state.loading;
 export const exchange = state => state.exchange;
 
 export const chartType = state => state.chartType;
+
+export const coinDetails = state => state.coinDetails;

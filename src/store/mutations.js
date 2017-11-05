@@ -32,3 +32,11 @@ export const setCurrency = (state, payload) => {
 export const setChartType = (state, payload) => {
   state.chartType = payload;
 }
+
+export const setExchange = (state, payload) => {
+  state.exchange = payload;
+}
+
+export const setCoinDetails = (state, payload) => {
+  state.coinDetails = payload;
+}

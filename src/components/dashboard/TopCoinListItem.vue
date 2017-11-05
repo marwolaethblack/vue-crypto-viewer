@@ -10,6 +10,7 @@
       <p>{{ coin.name }}</p>
     </figcaption>
     <span>{{ price }}</span>
+    <router-link :to="`/${coin.symbol}`">Details</router-link>
   </figure>
 </article>
 </template>

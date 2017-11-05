@@ -39,8 +39,8 @@ export const fetchCoinHistory = ({ commit, state }) => {
 
   axios.get(`/api/coins/${selectedCoin}/history?type=${chartType}&e=${exchange}&currency=${currency}`)
     .then(result => {
-      commit('setCoinHistory', result.data);
-      commit('loadItemFinished', 'coinHistory');
+        commit('setCoinHistory', result.data);
+        commit('loadItemFinished', 'coinHistory');
     })
     .catch(error => {
       console.log(error);
@@ -67,3 +67,28 @@ export const changeChartType = ({ commit, state }, payload) => {
   //Reloads graph with new data
   fetchCoinHistory({ commit, state });
 };
+
+export const changeExchange = ({ commit, state }, payload) => {
+  commit('setExchange', payload);
+
+  //Reloads graph with new data
+  fetchCoinHistory({ commit, state });
+};
+
+export const changeCoinDetails = ({ commit }, payload) => {
+  commit('loadItem', 'coinDetails');
+
+  axios.get(`/api/coins/${payload}/details`)
+    .then(response => {
+      commit('setCoinDetails', response.data);
+      commit('loadItemFinished', 'coinDetails');
+    })
+    .catch(error => {
+      console.log(error);
+      commit('loadItemFinished', 'coinDetails');
+    });
+
+};
+
+
+
