@@ -46,7 +46,6 @@ export const fetchCoinHistory = ({ commit, state }) => {
       console.log(error);
       commit('loadItemFinished', 'coinHistory');
     })
-
 }
 
 //Payload is the currency symbol e.g "DKK" "USD"
@@ -75,7 +74,7 @@ export const changeExchange = ({ commit, state }, payload) => {
   fetchCoinHistory({ commit, state });
 };
 
-export const changeCoinDetails = ({ commit }, payload) => {
+export const fetchCoinDetails = ({ commit }, payload) => {
   commit('loadItem', 'coinDetails');
 
   axios.get(`/api/coins/${payload}/details`)
@@ -87,7 +86,6 @@ export const changeCoinDetails = ({ commit }, payload) => {
       console.log(error);
       commit('loadItemFinished', 'coinDetails');
     });
-
 };
 
 
