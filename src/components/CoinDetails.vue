@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!isCoinDetailsLoading">
     <img :src="`static/img/coins/${coin}.png`">
     <h1>{{ coinDataGeneral.H1Text }}</h1>
     <a :href="coinDataGeneral.AffiliateUrl" target="_blank">Website</a>
@@ -31,10 +31,18 @@
     },
 
     computed: {
-      ...mapGetters(['coinDetails']),
+      ...mapGetters(['coinDetails', 'loading']),
+
+      isCoinDetailsLoading() {
+        if(this.loading.length != 0) {
+          return this.loading.indexOf('coinDetails') === -1 ? false : true;
+        }
+      },
+
       coinDataGeneral() {
-        return this.coinDetails.Data.General;
+          return this.coinDetails.Data.General;
       }
+
     },
 
     methods: {
