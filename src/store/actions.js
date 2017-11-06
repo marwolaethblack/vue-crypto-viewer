@@ -50,28 +50,33 @@ export const fetchCoinHistory = ({ commit, state }) => {
 
 //Payload is the currency symbol e.g "DKK" "USD"
 export const changeCurrency = ({ commit, state }, payload) => {
-    commit('setCurrency', payload);
+    if(payload != state.currency) {
+      commit('setCurrency', payload);
 
-    //Reloads top coins with new currency
-    fetchTopCoins({ commit }, payload);
+      //Reloads top coins with new currency
+      fetchTopCoins({ commit }, payload);
 
-    //Reloads coin price graphs with new currency
-    fetchCoinHistory({ commit, state });
-
+      //Reloads coin price graphs with new currency
+      fetchCoinHistory({ commit, state });
+    }
 };
 
 export const changeChartType = ({ commit, state }, payload) => {
-  commit('setChartType', payload);
+  if(payload != state.chartType) {
+    commit('setChartType', payload);
 
-  //Reloads graph with new data
-  fetchCoinHistory({ commit, state });
+    //Reloads graph with new data
+    fetchCoinHistory({ commit, state });
+  }
 };
 
 export const changeExchange = ({ commit, state }, payload) => {
-  commit('setExchange', payload);
+  if(payload != state.exchange) {
+    commit('setExchange', payload);
 
-  //Reloads graph with new data
-  fetchCoinHistory({ commit, state });
+    //Reloads graph with new data
+    fetchCoinHistory({ commit, state });
+  }
 };
 
 export const fetchCoinDetails = ({ commit }, payload) => {

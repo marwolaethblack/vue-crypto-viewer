@@ -1,6 +1,5 @@
 <template>
   <div>
-    OHLC chart
     {{ error }}
   </div>
 </template>
@@ -38,7 +37,12 @@
         data.setColumnProperty(5, 'role', 'tooltip');
 
         const options = {
-          legend: 'none'
+          legend: 'none',
+          title: `Open-high-low-close chart of ${this.coinHistory.CoinName} price`,
+          chartArea: {
+            width: '91%',
+          },
+          width: '100%'
         };
 
         const chart = new google.visualization.CandlestickChart(this.$el);
@@ -51,7 +55,6 @@
         google.charts.setOnLoadCallback(this.drawChart);
       }
     },
-
 
     props: ['coinHistory']
   }

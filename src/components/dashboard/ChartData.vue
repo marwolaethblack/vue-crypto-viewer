@@ -1,11 +1,10 @@
 <template>
   <div>
     <!--Either show loader or graph display component with menu-->
-    <app-loader v-if="isCoinHistoryLoading" style="width: 900px; height: 500px;"></app-loader>
-    <div v-else style="width: 900px; height: 500px;">
-      <p >{{ selectedCoin }}</p>
+    <app-loader v-if="isCoinHistoryLoading" style="width: 100vw; height: 60vh;"></app-loader>
+    <div v-else style="width: 100%; height: 60vh;">
       <!--Chart-->
-      <app-Chart :coinHistory="coinHistory" style="width: 900px; height: 500px;"></app-Chart>
+      <app-Chart :coinHistory="coinHistory" style="width: 100%; height: 100%;"></app-Chart>
       <!--Chart buttons e.g graph of prices of this week, month , year...-->
       <app-ChartButtons ></app-ChartButtons>
     </div>

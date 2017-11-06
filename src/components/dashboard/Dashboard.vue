@@ -1,14 +1,14 @@
 <template>
   <div>
     <app-topCoinList :topCoins="topCoins"></app-topCoinList>
-    <app-graphData></app-graphData>
+    <app-chartData></app-chartData>
   </div>
 </template>
 
 <script>
   import { mapActions, mapGetters } from 'vuex';
   import TopCoinList from './TopCoinsList.vue';
-  import GraphData from './ChartData.vue';
+  import ChartData from './ChartData.vue';
   export default {
     created() {
       if(this.topCoins.length < 10) {
@@ -27,7 +27,7 @@
     },
     components: {
       'app-topCoinList': TopCoinList,
-      'app-graphData': GraphData
+      'app-chartData': ChartData
     }
   }
 </script>
