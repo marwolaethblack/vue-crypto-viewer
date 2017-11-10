@@ -23,5 +23,6 @@
 <style>
 .level {
   overflow-x: scroll;
+  overflow-y: hidden;
 }
 </style>

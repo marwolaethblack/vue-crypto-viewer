@@ -1,5 +1,5 @@
 <template>
-<article @click="changeSelectedCoin(coin.symbol)">
+<article @click="changeSelectedCoin(coin.symbol)" class="top-coin">
   <figure>
     <img :src="`static/img/coins/${coin.img}`"
          :key="coin.rank"
@@ -42,6 +42,8 @@
 </script>
 
 <style>
-
-
+  .top-coin:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+  }
 </style>
