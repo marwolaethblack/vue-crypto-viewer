@@ -79,18 +79,26 @@ export const changeExchange = ({ commit, state }, payload) => {
   }
 };
 
-export const fetchCoinDetails = ({ commit }, payload) => {
-  commit('loadItem', 'coinDetails');
+export const fetchCoinDetails = ({ commit, state }, payload) => {
 
-  axios.get(`/api/coins/${payload}/details`)
-    .then(response => {
-      commit('setCoinDetails', response.data);
-      commit('loadItemFinished', 'coinDetails');
-    })
-    .catch(error => {
-      console.log(error);
-      commit('loadItemFinished', 'coinDetails');
-    });
+
+  const areCoinDetailsEmpty = !Object.keys(state.coinDetails).length;
+
+  if(areCoinDetailsEmpty || state.coinDetails.Data.General.Symbol != payload) {
+    commit('loadItem', 'coinDetails');
+
+    axios.get(`/api/coins/${payload}/details`)
+      .then(response => {
+        commit('setCoinDetails', response.data);
+        commit('loadItemFinished', 'coinDetails');
+      })
+      .catch(error => {
+        console.log(error);
+        commit('loadItemFinished', 'coinDetails');
+      });
+  }
+
+
 };
 
 
