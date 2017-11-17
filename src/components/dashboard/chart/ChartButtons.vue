@@ -7,7 +7,7 @@
 
 <script>
   import { mapActions } from 'vuex';
-  import chartTypes from '../../constants/chartTypes';
+  import chartTypes from '../../../constants/chartTypes';
 
   export default {
 

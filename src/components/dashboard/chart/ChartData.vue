@@ -13,7 +13,7 @@
 
 <script>
   import { mapActions, mapGetters } from 'vuex';
-  import Loader from '../Loader.vue';
+  import Loader from '../../Loader.vue';
   import Chart from './CandleStickChart.vue';
   import ChartButtons from './ChartButtons.vue';
 

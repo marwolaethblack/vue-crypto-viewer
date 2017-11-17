@@ -6,7 +6,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
-  import parseHistoryData from '../../helpers/parseHistoryData';
+  import parseHistoryData from '../../../helpers/parseHistoryData';
 
   export default {
 

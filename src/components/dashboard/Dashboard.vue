@@ -7,8 +7,8 @@
 
 <script>
   import { mapActions, mapGetters } from 'vuex';
-  import TopCoinList from './TopCoinsList.vue';
-  import ChartData from './ChartData.vue';
+  import TopCoinList from './topCoins/TopCoinsList.vue';
+  import ChartData from './chart/ChartData.vue';
   export default {
     created() {
       if(this.topCoins.length < 10) {

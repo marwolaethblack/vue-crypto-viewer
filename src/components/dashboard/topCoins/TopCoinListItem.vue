@@ -10,7 +10,7 @@
       <p>{{ coin.name }}</p>
     </figcaption>
     <span>{{ price }}</span>
-    <router-link :to="`/${coin.symbol}`">Details</router-link>
+    <router-link :to="`/coins/${coin.symbol}/details`">Details</router-link>
   </figure>
 </article>
 </template>
@@ -26,7 +26,8 @@
       price() {
         const parsedNumber = this.coin[`price_${this.currency.toLowerCase()}`];
         if(parsedNumber) {
-          return parsedNumber.toLocaleString() + " " + this.currency;
+          const numberString = parsedNumber.toLocaleString();
+          return numberString.substring(0, numberString.indexOf(".") + 4) + " " + this.currency;
         }
       }
     },
