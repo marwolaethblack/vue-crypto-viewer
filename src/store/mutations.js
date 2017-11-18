@@ -40,3 +40,7 @@ export const setExchange = (state, payload) => {
 export const setCoinDetails = (state, payload) => {
   state.coinDetails = payload;
 }
+
+export const setAllCoins = (state, payload) => {
+  state.allCoins = payload;
+}

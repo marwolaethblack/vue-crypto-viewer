@@ -101,5 +101,21 @@ export const fetchCoinDetails = ({ commit, state }, payload) => {
 
 };
 
+export const fetchAllCoins = ({ commit }, payload) => {
+
+  commit('loadItem', 'allCoins');
+
+  axios.get('/api/coins/all')
+    .then(response => {
+      commit('setAllCoins', response.data);
+      commit('loadItemFinished', 'allCoins');
+    })
+    .catch(error => {
+      console.log(error);
+      commit('loadItemFinished', 'allCoins');
+    })
+
+}
+
 
 

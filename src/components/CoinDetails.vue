@@ -4,7 +4,7 @@
     <div v-else>
       <section class="section">
         <div class="container">
-          <img :src="`static/img/coins/${coin}.png`">
+          <img :src="`/static/img/coins/${coin}.png`">
           <h1 class="title is-1">{{ coinDataGeneral.H1Text }}</h1>
           <a v-show="hasLink(coinDataGeneral.AffiliateUrl)" :href="coinDataGeneral.AffiliateUrl" target="_blank">Website</a>
           <a v-show="hasLink(coinDataIco.BlogLink)" :href="coinDataIco.BlogLink" target="_blank">Blog</a>

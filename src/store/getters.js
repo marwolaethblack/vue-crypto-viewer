@@ -13,3 +13,5 @@ export const exchange = state => state.exchange;
 export const chartType = state => state.chartType;
 
 export const coinDetails = state => state.coinDetails;
+
+export const allCoins = state => state.allCoins;

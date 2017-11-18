@@ -14,7 +14,8 @@ const state = {
   loading: [],
   coinHistory: {},
   chartType: 'month',
-  coinDetails: {}
+  coinDetails: {},
+  allCoins: {}
 };
 
 const store = new Vuex.Store({
