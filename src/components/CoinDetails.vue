@@ -13,9 +13,11 @@
             Twitter
             <i class="fa fa-twitter" aria-hidden="true"></i>
           </a>
-          <span>{{ socketData.PRICE }}</span>
-          <span>Total coin supply: {{ coinDataGeneral.TotalCoinSupply}}</span>
-          <span>Total coins mined: {{ coinDataGeneral.TotalCoinsMined}}</span>
+          <p class="price"><strong>{{ socketData.PRICE + currency }}</strong>
+            <span :class="{ positive: isPercentChangePositive, negative: !isPercentChangePositive}">{{ pricePercentChange + "%" }}</span>
+          </p>
+          <p>Total coin supply: {{ coinDataGeneral.TotalCoinSupply}}</p>
+          <p>Total coins mined: {{ coinDataGeneral.TotalCoinsMined}}</p>
         </div>
       </section>
       <section class="section">
@@ -53,7 +55,8 @@
         coin: "",
         socket: {},
         subscription: [],
-        socketData: {}
+        socketData: {},
+        pricePercentChange: 0
       }
     },
 
@@ -65,8 +68,12 @@
       this.subscription = [`5~CCCAGG~${this.coin}~${this.currency}`];
       this.socket.emit('SubAdd', { subs: this.subscription });
       this.socket.on("m", message => {
-        this.socketData = {...this.socketData, ...parseWebSocketPriceData.CURRENT.unpack(message)};
-        console.log(this.socketData);
+        const parsedData = parseWebSocketPriceData.CURRENT.unpack(message);
+        const priceChange = ((parseFloat(parsedData.PRICE) - parseFloat(this.socketData.PRICE)) / this.socketData.PRICE) * 100;
+        const percentChange = isNaN(parseFloat(priceChange).toFixed(5)) ? percentChange : parseFloat(priceChange).toFixed(5);
+        this.pricePercentChange = percentChange ? percentChange : this.pricePercentChange;
+
+        this.socketData = {...this.socketData, ...parsedData};
       });
     },
 
@@ -93,6 +100,10 @@
         return this.coinDetails.Data.ICO;
       },
 
+      isPercentChangePositive() {
+        return parseFloat(this.pricePercentChange) > 0;
+      }
+
     },
 
     methods: {
@@ -100,7 +111,7 @@
 
       hasLink(link) {
         return typeof(link) == "string";
-      }
+      },
     },
 
     components: {
@@ -110,6 +121,17 @@
   }
 </script>
 
-<style>
+<style scoped>
+  .price {
+    font-size: 2em;
+  }
+
+  .price >.positive {
+    color: green;
+  }
+
+  .price >.negative {
+    color:red;
+  }
 
 </style>

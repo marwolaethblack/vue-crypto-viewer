@@ -112,7 +112,30 @@ var webpackConfig = merge(baseWebpackConfig, {
             name: 'static-cache-v1'
           }
         }
-      },]
+      },
+        {
+          urlPattern: 'api/coins/*/history',
+          handler: 'fastest',
+          opriotns: {
+            cache: {
+              maxEntries: 5,
+              name: 'request-cache-v1'
+            }
+          }
+        },
+        {
+          urlPattern: 'api/coins/top',
+          handler: 'fastest',
+          opriotns: {
+            cache: {
+              maxEntries: 5,
+              name: 'request-cache-v1'
+            }
+          }
+        }
+
+
+      ]
     })
   ]
 })
