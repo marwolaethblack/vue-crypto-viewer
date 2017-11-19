@@ -13,6 +13,7 @@
             Twitter
             <i class="fa fa-twitter" aria-hidden="true"></i>
           </a>
+          <span>{{ socketData.PRICE }}</span>
           <span>Total coin supply: {{ coinDataGeneral.TotalCoinSupply}}</span>
           <span>Total coins mined: {{ coinDataGeneral.TotalCoinsMined}}</span>
         </div>
@@ -42,23 +43,41 @@
 <script>
   import { mapActions, mapGetters } from 'vuex';
   import Loader from './Loader.vue';
+  import io from 'socket.io-client';
+  import parseWebSocketPriceData from '../helpers/parseWebSocketPriceData';
 
   export default {
 
     data() {
       return {
-        coin: ""
+        coin: "",
+        socket: {},
+        subscription: [],
+        socketData: {}
       }
     },
 
     created() {
       this.coin = this.$route.params.coin;
       this.fetchCoinDetails(this.coin);
+
+      this.socket = io('wss://streamer.cryptocompare.com');
+      this.subscription = [`5~CCCAGG~${this.coin}~${this.currency}`];
+      this.socket.emit('SubAdd', { subs: this.subscription });
+      this.socket.on("m", message => {
+        this.socketData = {...this.socketData, ...parseWebSocketPriceData.CURRENT.unpack(message)};
+        console.log(this.socketData);
+      });
+    },
+
+    destroyed() {
+      this.socket.emit('SubRemove', { subs: this.subscription } );
+      this.socket.close();
     },
 
 
     computed: {
-      ...mapGetters(['coinDetails', 'loading']),
+      ...mapGetters(['coinDetails', 'loading', 'currency']),
 
       isCoinDetailsLoading() {
         if(this.loading.length != 0) {
