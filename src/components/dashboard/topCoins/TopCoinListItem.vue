@@ -1,7 +1,7 @@
 <template>
 <article @click="changeSelectedCoin(coin.symbol)" class="top-coin">
   <figure>
-    <img :src="`static/img/coins/${coin.img}`"
+    <img :src="`static/img/coins/${webpImage}`"
          :key="coin.rank"
          @error="imgError"
          :alt="coin.name"/>
@@ -29,6 +29,10 @@
           const numberString = parsedNumber.toLocaleString();
           return numberString.substring(0, numberString.indexOf(".") + 4) + " " + this.currency;
         }
+      },
+      webpImage() {
+        const imageString = this.coin.img;
+        return imageString.substring(0, imageString.indexOf('.')) + ".webp";
       }
     },
 
@@ -36,6 +40,7 @@
       ...mapActions(['changeSelectedCoin']),
       imgError(e) {
         e.target.src = "http://via.placeholder.com/180x180";
+        console.log("Switch to chrome to view .webp images");
       }
     }
 

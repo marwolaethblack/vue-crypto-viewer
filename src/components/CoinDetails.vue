@@ -4,7 +4,7 @@
     <div v-else>
       <section class="section">
         <div class="container">
-          <img :src="`/static/img/coins/${coin}.png`">
+          <img :src="`/static/img/coins/${coin}.webp`">
           <h1 class="title is-1">{{ coinDataGeneral.H1Text }}</h1>
           <a v-show="hasLink(coinDataGeneral.AffiliateUrl)" :href="coinDataGeneral.AffiliateUrl" target="_blank">Website</a>
           <a v-show="hasLink(coinDataIco.BlogLink)" :href="coinDataIco.BlogLink" target="_blank">Blog</a>
@@ -63,6 +63,8 @@
     created() {
       this.coin = this.$route.params.coin;
       this.fetchCoinDetails(this.coin);
+      this.coin = this.coin === 'BCC' ? "BCCOIN" : this.coin;
+      this.coin = this.coin === 'MIOTA' ? 'IOT' : this.coin;
 
       this.socket = io('wss://streamer.cryptocompare.com');
       this.subscription = [`5~CCCAGG~${this.coin}~${this.currency}`];
