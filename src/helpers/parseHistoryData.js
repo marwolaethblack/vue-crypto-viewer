@@ -30,7 +30,7 @@ const parseData = (coinHistory, currency) => {
     coinHistory.Data.forEach(priceData => {
       const {high, low, open, close} = priceData;
       const date = moment.unix(priceData.time).format(format);
-      data.push([date, low, open, close, high, `${date}\nOpen: ${open} ${currency}\nHigh: ${high} ${currency}\nLow: ${low} ${currency}\nClose: ${close} ${currency}`]);
+      data.push([date, low, open, close, high, `${date}\nOpen: ${open.toLocaleString()} ${currency}\nHigh: ${high.toLocaleString()} ${currency}\nLow: ${low.toLocaleString()} ${currency}\nClose: ${close.toLocaleString()} ${currency}`]);
     });
 
     return data;

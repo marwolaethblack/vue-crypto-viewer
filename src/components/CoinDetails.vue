@@ -13,8 +13,9 @@
             Twitter
             <i class="fa fa-twitter" aria-hidden="true"></i>
           </a>
-          <p class="price"><strong>{{ socketData.PRICE + currency }}</strong>
+          <p class="price"><strong>{{ socketData.PRICE + " USD" }}</strong>
             <span :class="{ positive: isPercentChangePositive, negative: !isPercentChangePositive}">{{ pricePercentChange + "%" }}</span>
+            <i class="fa fa-question" aria-hidden="true" title="Due to api restrictions real time price data is only offered in USD"></i>
           </p>
           <p>Total coin supply: {{ coinDataGeneral.TotalCoinSupply}}</p>
           <p>Total coins mined: {{ coinDataGeneral.TotalCoinsMined}}</p>
@@ -67,7 +68,7 @@
       this.coin = this.coin === 'MIOTA' ? 'IOT' : this.coin;
 
       this.socket = io('wss://streamer.cryptocompare.com');
-      this.subscription = [`5~CCCAGG~${this.coin}~${this.currency}`];
+      this.subscription = [`5~CCCAGG~${this.coin}~USD`];
       this.socket.emit('SubAdd', { subs: this.subscription });
       this.socket.on("m", message => {
         const parsedData = parseWebSocketPriceData.CURRENT.unpack(message);
@@ -86,7 +87,7 @@
 
 
     computed: {
-      ...mapGetters(['coinDetails', 'loading', 'currency']),
+      ...mapGetters(['coinDetails', 'loading']),
 
       isCoinDetailsLoading() {
         if(this.loading.length != 0) {
