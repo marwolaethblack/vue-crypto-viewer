@@ -1,6 +1,6 @@
 export const setTopCoins = (state, payload) => {
   payload.forEach(coin => {
-    coin.img = coin.symbol + ".png";
+    coin.img = coin.symbol + ".webp";
   })
 
   state.topCoins = payload;

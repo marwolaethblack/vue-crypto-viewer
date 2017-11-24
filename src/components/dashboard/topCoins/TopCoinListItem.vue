@@ -1,7 +1,7 @@
 <template>
 <article @click="changeSelectedCoin(coin.symbol)" class="top-coin">
   <figure>
-    <img :src="`static/img/coins/${webpImage}`"
+    <img :src="`static/img/coins/${coin.img}`"
          :key="coin.rank"
          @error="imgError"
          :alt="coin.name"/>
@@ -29,10 +29,6 @@
           const numberString = parsedNumber.toLocaleString();
           return numberString.substring(0, numberString.indexOf(".") + 4) + " " + this.currency;
         }
-      },
-      webpImage() {
-        const imageString = this.coin.img;
-        return imageString.substring(0, imageString.indexOf('.')) + ".webp";
       }
     },
 

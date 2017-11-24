@@ -29,10 +29,14 @@
       },
 
       percentChange() {
-        const oldPrice = this.coinHistory.Data[0].close;
-        const newPrice = this.coinHistory.Data[this.coinHistory.Data.length - 1].close;
-        const change = ((newPrice -  oldPrice) / oldPrice) * 100;
-        return parseFloat(change).toFixed(2);
+        if(this.coinHistory.Data.length) {
+          const oldPrice = this.coinHistory.Data[0].close;
+          const newPrice = this.coinHistory.Data[this.coinHistory.Data.length - 1].close;
+          const change = ((newPrice -  oldPrice) / oldPrice) * 100;
+          return parseFloat(change).toFixed(2);
+        } else {
+          return 0;
+        }
       },
 
       percentChangPositive() {
