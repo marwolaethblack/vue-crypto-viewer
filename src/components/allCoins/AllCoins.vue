@@ -2,11 +2,7 @@
   <div>
     <app-Loader v-if="isAllCoinsLoading"></app-Loader>
     <div v-else>
-      <ul>
-        <li v-for="(value, coin) in allCoins[currentPage-1]">
-          {{ coin }}
-        </li>
-      </ul>
+      <app-CoinList :allCoins="allCoins[currentPage-1]"></app-CoinList>
       <app-Pagination :currentPage="currentPage"
                         :maxPages="maxPages"
                         :changePage="changePage"
@@ -19,6 +15,7 @@
   import { mapGetters, mapActions } from 'vuex';
   import Loader from '../Loader.vue';
   import Pagination from './Pagination.vue';
+  import CoinList from './CoinList.vue';
 
   export default {
 
@@ -58,7 +55,8 @@
 
     components: {
       'app-Loader': Loader,
-      'app-Pagination': Pagination
+      'app-Pagination': Pagination,
+      'app-CoinList': CoinList
     }
 
   }

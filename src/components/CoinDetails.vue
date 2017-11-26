@@ -4,7 +4,7 @@
     <div v-else>
       <section class="section">
         <div class="container">
-          <img :src="`/static/img/coins/${coin}.webp`">
+          <img :src="imageSource">
           <h1 class="title is-1">{{ coinDataGeneral.H1Text }}</h1>
           <a v-show="hasLink(coinDataGeneral.AffiliateUrl)" :href="coinDataGeneral.AffiliateUrl" target="_blank">Website</a>
           <a v-show="hasLink(coinDataIco.BlogLink)" :href="coinDataIco.BlogLink" target="_blank">Blog</a>
@@ -13,10 +13,11 @@
             Twitter
             <i class="fa fa-twitter" aria-hidden="true"></i>
           </a>
-          <p class="price"><strong>{{ socketData.PRICE + " USD" }}</strong>
+          <p class="price" v-if="socketData.PRICE"><strong>{{ socketData.PRICE + " USD" }}</strong>
             <span :class="{ positive: isPercentChangePositive, negative: !isPercentChangePositive}">{{ pricePercentChange + "%" }}</span>
             <i class="fa fa-question" aria-hidden="true" title="Due to api restrictions real time price data is only offered in USD"></i>
           </p>
+          <p v-else><strong>No real time price data available</strong></p>
           <p>Total coin supply: {{ coinDataGeneral.TotalCoinSupply}}</p>
           <p>Total coins mined: {{ coinDataGeneral.TotalCoinsMined}}</p>
         </div>
@@ -105,6 +106,17 @@
 
       isPercentChangePositive() {
         return parseFloat(this.pricePercentChange) > 0;
+      },
+
+      imageSource() {
+        let Name = this.coin;
+        const index = Name.indexOf('*');
+        if(index != -1) {
+          Name = Name.replace('*','');
+        }
+
+        return `/static/img/coins/${Name}.webp`;
+
       }
 
     },
@@ -115,6 +127,11 @@
       hasLink(link) {
         return typeof(link) == "string";
       },
+
+      imgError(e) {
+        e.target.src = "https://www.cryptocompare.com" + this.coinDataGeneral.ImageUrl;
+        console.log("Switch to chrome to view .webp images");
+      }
     },
 
     components: {
