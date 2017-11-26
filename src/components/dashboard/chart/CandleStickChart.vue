@@ -24,6 +24,7 @@
         this.error = "";
         this.loadChart();
       }
+
     },
 
     computed: {

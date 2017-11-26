@@ -32,6 +32,7 @@
     methods: {
       imgError(e) {
         e.target.src = "https://www.cryptocompare.com" + this.coin.ImageUrl;
+        console.log(this.coin.ImageUrl);
         console.log("Switch to chrome to view .webp images");
       }
     }

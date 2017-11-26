@@ -19,6 +19,7 @@ export default new Router({
       component: CoinDetails
     },
     {
+      name: 'AllCoins',
       path: '/coins/all',
       component: AllCoins
     }

@@ -1,11 +1,11 @@
 <template>
   <div>
     <!--Either show loader or graph display component with menu-->
-    <app-loader v-if="isCoinHistoryLoading" style="width: 100vw; height: 60vh;"></app-loader>
-    <div v-else style="width: 100%; height: 60vh; position:relative">
+    <app-loader v-if="isCoinHistoryLoading" style="width: 98%vw; height: 65vh;"></app-loader>
+    <div v-else style="width: 100%; height: 65vh; position:relative">
       <!--Chart-->
       <span class="percent-change" :class="{ positive: percentChangPositive, negative: !percentChangPositive }">{{ percentChange + "%"}}</span>
-      <app-Chart :coinHistory="coinHistory" style="width: 100%; height: 100%;"></app-Chart>
+      <app-Chart :coinHistory="coinHistory" style="width: 98%; height: 100%;"></app-Chart>
       <!--Chart buttons e.g graph of prices of this week, month , year...-->
       <app-ChartButtons ></app-ChartButtons>
     </div>
@@ -69,8 +69,8 @@
 <style scoped>
   .percent-change {
     position: absolute;
-    top: 13%;
-    left:88%;
+    top: 11%;
+    left:80%;
     z-index: 10;
     font-size: 1.3em;
   }

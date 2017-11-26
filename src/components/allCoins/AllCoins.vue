@@ -19,13 +19,6 @@
 
   export default {
 
-    data() {
-      return{
-        currentPage: 1,
-
-      }
-    },
-
     created() {
       this.fetchAllCoins();
     },
@@ -40,6 +33,10 @@
 
       maxPages() {
         return this.allCoins.length;
+      },
+
+      currentPage() {
+        return parseInt(this.$route.query.page);
       }
 
     },
@@ -48,7 +45,7 @@
       ...mapActions(['fetchAllCoins']),
 
       changePage(page) {
-        this.currentPage = page;
+        this.$router.push({ path: '/coins/all', query: { page }});
       }
 
     },

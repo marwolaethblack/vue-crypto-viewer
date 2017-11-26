@@ -5,7 +5,7 @@
        <router-link to="/" tag="a">
           <span>CryptoVuewer</span>
        </router-link>
-        <router-link to="/coins/all" tag="a">
+        <router-link to="/coins/all?page=1" tag="a">
           <span>AllCoins</span>
         </router-link>
         <div class="navbar-burger burger" data-target="navMenuTransparentExample" @click="toggleDisplayMenu">
