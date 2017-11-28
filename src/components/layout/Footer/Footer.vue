@@ -1,9 +1,9 @@
-<template>
+<template functional>
   <footer class="footer">
     <div class="container">
       <div class="content has-text-centered">
         <p>
-          <strong>CryptoVuewer</strong> by <a href="https://github.com/marwolaethblack">Adnan Ünal</a>
+          <strong>CryptoVuewer</strong>
         </p>
       </div>
     </div>

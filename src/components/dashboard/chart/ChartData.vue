@@ -7,7 +7,7 @@
       <span class="percent-change" :class="{ positive: percentChangPositive, negative: !percentChangPositive }">{{ percentChange + "%"}}</span>
       <app-Chart :coinHistory="coinHistory" style="width: 98%; height: 100%;"></app-Chart>
       <!--Chart buttons e.g graph of prices of this week, month , year...-->
-      <app-ChartButtons ></app-ChartButtons>
+      <app-ChartButtons></app-ChartButtons>
     </div>
   </div>
 </template>
@@ -60,8 +60,7 @@
       if(!this.coinHistory.hasOwnProperty('Data')) {
         this.fetchCoinHistory();
       }
-    }
-
+    },
   }
 
 </script>

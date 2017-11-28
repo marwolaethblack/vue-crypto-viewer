@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import Dashboard from '@/components/dashboard/Dashboard.vue'
-import CoinDetails from '@/components/CoinDetails.vue'
-import AllCoins from '@/components/allCoins/AllCoins.vue'
+const CoinDetails = () =>  import('@/components/CoinDetails.vue')
+const AllCoins = () => import('@/components/allCoins/AllCoins.vue')
 
 Vue.use(Router);
 

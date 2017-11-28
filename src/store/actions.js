@@ -29,10 +29,10 @@ export const changeSelectedCoin = ({ commit, state }, payload) => {
 }
 
 
-
+//Optional payload which is the coin symbol of the coin whose history you want to load
 export const fetchCoinHistory = ({ commit, state }) => {
 
-  const { exchange, currency, selectedCoin, chartType } = state;
+  const { exchange, currency, chartType, selectedCoin } = state;
 
   commit('loadItem', 'coinHistory');
 
@@ -46,7 +46,7 @@ export const fetchCoinHistory = ({ commit, state }) => {
       console.log(error);
       commit('loadItemFinished', 'coinHistory');
     })
-}
+};
 
 //Payload is the currency symbol e.g "DKK" "USD"
 export const changeCurrency = ({ commit, state }, payload) => {
@@ -63,13 +63,21 @@ export const changeCurrency = ({ commit, state }, payload) => {
 
 export const changeChartType = ({ commit, state }, payload) => {
   if(payload != state.chartType) {
-    commit('setChartType', payload);
+    commit('setChartType', payload.type);
 
     //Reloads graph with new data
-    fetchCoinHistory({ commit, state });
+    if(payload.coinToLoad) {
+      fetchCoinHistory({ commit, state }, payload.coinToLoad);
+    } else {
+      fetchCoinHistory({ commit, state });
+    }
+
+
   }
 };
 
+
+//Required payload which is the exchange symbol e.g "CCCAGG"
 export const changeExchange = ({ commit, state }, payload) => {
   if(payload != state.exchange) {
     commit('setExchange', payload);
@@ -79,6 +87,8 @@ export const changeExchange = ({ commit, state }, payload) => {
   }
 };
 
+
+//Required payload which is the coin symbol e g "BTC"
 export const fetchCoinDetails = ({ commit, state }, payload) => {
 
 

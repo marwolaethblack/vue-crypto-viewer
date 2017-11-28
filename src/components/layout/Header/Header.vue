@@ -18,9 +18,11 @@
         <div class="navbar-end">
           <app-currencyDropdown :currency="currency"
                                 :changeCurrency="changeCurrency"
+                                :currencies="currencies"
           ></app-currencyDropdown>
           <app-exchangeDropdown :exchange="exchange"
                                 :changeExchange="changeExchange"
+                                :exchanges="exchanges"
           ></app-exchangeDropdown>
         </div>
       </div>
@@ -32,11 +34,22 @@
   import { mapActions, mapGetters } from 'vuex';
   import CurrencyDropdown from './CurrencyDropdown.vue';
   import ExchangeDropdown from './ExchangeDropdown.vue';
+  import currencies from '../../../constants/currencies';
+  import exchanges from '../../../constants/exchanges';
 
   export default {
 
     computed: {
-      ...mapGetters(['currency', 'exchange'])
+      ...mapGetters(['currency', 'exchange']),
+
+      currencies() {
+        return currencies;
+      },
+
+      exchanges() {
+        return exchanges;
+      }
+
     },
 
     methods: {

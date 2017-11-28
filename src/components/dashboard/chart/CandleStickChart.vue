@@ -16,10 +16,14 @@
       }
     },
 
+    created() {
+      google.charts.load('current', {'packages':['corechart']});
+    },
+
     mounted() {
       const { Response } = this.coinHistory;
       if(Response === 'Error') {
-        this.error = "The market does not exist for this coin pair, try changing the exchange or currency";
+        this.error = "OHLC Chart not available. The market does not exist for this coin pair, try changing the exchange or currency";
       } else {
         this.error = "";
         this.loadChart();
@@ -52,7 +56,6 @@
       },
 
       loadChart() {
-        google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(this.drawChart);
       }
     },

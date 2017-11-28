@@ -4,6 +4,7 @@
       <img :src="imageSource"
            :title="coin.FullName"
            @error="imgError"
+           class="coin-img"
       >
       <figcaption>
         {{ coin.Name }}
@@ -41,5 +42,9 @@
 </script>
 
 <style>
+  .coin-img {
+    max-width: 180px;
+    max-height: 180px;
+  }
 
 </style>

@@ -13,16 +13,10 @@
 </template>
 
 <script>
-  import currencies from '../../../constants/currencies';
 
   export default {
-    data() {
-      return {
-        currencies
-      }
-    },
 
-    props: ['currency', 'changeCurrency']
+    props: ['currency', 'changeCurrency', 'currencies']
   }
 </script>
 

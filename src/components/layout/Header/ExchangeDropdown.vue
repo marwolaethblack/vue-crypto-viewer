@@ -13,16 +13,10 @@
 </template>
 
 <script>
-  import exchanges from '../../../constants/exchanges';
+
 
   export default {
-    data() {
-      return {
-        exchanges
-      }
-    },
-
-    props: ['exchange', 'changeExchange']
+    props: ['exchange', 'changeExchange', 'exchanges']
   }
 </script>
 

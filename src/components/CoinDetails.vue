@@ -17,10 +17,13 @@
             <span :class="{ positive: isPercentChangePositive, negative: !isPercentChangePositive}">{{ pricePercentChange + "%" }}</span>
             <i class="fa fa-question" aria-hidden="true" title="Due to api restrictions real time price data is only offered in USD"></i>
           </p>
-          <p v-else><strong>No real time price data available</strong></p>
+          <p v-else><strong>No real time price data available6</strong></p>
           <p>Total coin supply: {{ coinDataGeneral.TotalCoinSupply}}</p>
           <p>Total coins mined: {{ coinDataGeneral.TotalCoinsMined}}</p>
         </div>
+      </section>
+      <section class="section">
+        <app-ChartData></app-ChartData>
       </section>
       <section class="section">
         <div class="container">
@@ -47,8 +50,10 @@
 <script>
   import { mapActions, mapGetters } from 'vuex';
   import Loader from './Loader.vue';
+  import ChartData from './dashboard/chart/ChartData.vue'
   import io from 'socket.io-client';
   import parseWebSocketPriceData from '../helpers/parseWebSocketPriceData';
+
 
   export default {
 
@@ -67,6 +72,7 @@
       this.fetchCoinDetails(this.coin);
       this.coin = this.coin === 'BCC' ? "BCCOIN" : this.coin;
       this.coin = this.coin === 'MIOTA' ? 'IOT' : this.coin;
+      this.changeSelectedCoin(this.coin);
 
       this.socket = io('wss://streamer.cryptocompare.com');
       this.subscription = [`5~CCCAGG~${this.coin}~USD`];
@@ -122,7 +128,7 @@
     },
 
     methods: {
-      ...mapActions(['fetchCoinDetails']),
+      ...mapActions(['fetchCoinDetails', 'changeSelectedCoin']),
 
       hasLink(link) {
         return typeof(link) == "string";
@@ -135,7 +141,8 @@
     },
 
     components: {
-      'app-Loader': Loader
+      'app-Loader': Loader,
+      'app-ChartData': ChartData
     },
 
   }
