@@ -7,17 +7,20 @@
 <script>
   import { mapGetters } from 'vuex';
   import parseHistoryData from '../../../helpers/parseHistoryData';
+  import debounce from '../../../helpers/debouncer';
 
   export default {
 
     data() {
       return {
-        error: ""
+        error: "",
+        chart: {}
       }
     },
 
     created() {
-      google.charts.load('current', {'packages':['corechart']});
+      google.charts.load('current', {'packages': ['corechart']});
+      window.addEventListener('resize', debounce(this.drawChart,300));
     },
 
     mounted() {
@@ -33,14 +36,8 @@
 
     computed: {
       ...mapGetters(['currency']),
-    },
 
-    methods: {
-      drawChart() {
-        let data = parseHistoryData(this.coinHistory, this.currency);
-        data = google.visualization.arrayToDataTable(data, true);
-        data.setColumnProperty(5, 'role', 'tooltip');
-
+      chartOptions() {
         const options = {
           legend: 'none',
           title: `Open-high-low-close chart of ${this.coinHistory.CoinName} price`,
@@ -50,9 +47,23 @@
           width: '100%'
         };
 
-        const chart = new google.visualization.CandlestickChart(this.$el);
+        return options;
+      },
 
-        chart.draw(data, options);
+      chartData() {
+        let data = parseHistoryData(this.coinHistory, this.currency);
+        data = google.visualization.arrayToDataTable(data, true);
+        data.setColumnProperty(5, 'role', 'tooltip');
+
+        return data;
+      }
+
+    },
+
+    methods: {
+      drawChart() {
+        this.chart = new google.visualization.CandlestickChart(this.$el);
+        this.chart.draw(this.chartData, this.chartOptions);
       },
 
       loadChart() {
