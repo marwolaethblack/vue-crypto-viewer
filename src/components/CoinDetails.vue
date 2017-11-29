@@ -17,7 +17,7 @@
             <span :class="{ positive: isPercentChangePositive, negative: !isPercentChangePositive}">{{ pricePercentChange + "%" }}</span>
             <i class="fa fa-question" aria-hidden="true" title="Due to api restrictions real time price data is only offered in USD"></i>
           </p>
-          <p v-else><strong>No real time price data available6</strong></p>
+          <p v-else><strong>No real time price data available</strong></p>
           <p>Total coin supply: {{ coinDataGeneral.TotalCoinSupply}}</p>
           <p>Total coins mined: {{ coinDataGeneral.TotalCoinsMined}}</p>
         </div>

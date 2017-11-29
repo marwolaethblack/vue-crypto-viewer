@@ -2,6 +2,7 @@
   <div>
     <app-Loader v-if="isAllCoinsLoading"></app-Loader>
     <div v-else>
+      <app-CoinSearch :allCoins="allCoins"></app-CoinSearch>
       <app-CoinList :allCoins="allCoins[currentPage-1]"></app-CoinList>
       <app-Pagination :currentPage="currentPage"
                         :maxPages="maxPages"
@@ -16,6 +17,7 @@
   import Loader from '../Loader.vue';
   import Pagination from './Pagination.vue';
   import CoinList from './CoinList.vue';
+  import CoinSearch from './CoinSearch.vue';
 
   export default {
 
@@ -53,7 +55,8 @@
     components: {
       'app-Loader': Loader,
       'app-Pagination': Pagination,
-      'app-CoinList': CoinList
+      'app-CoinList': CoinList,
+      'app-CoinSearch': CoinSearch
     }
 
   }

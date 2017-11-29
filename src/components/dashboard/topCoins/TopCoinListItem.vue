@@ -1,5 +1,5 @@
 <template>
-<article @click="changeSelectedCoin(coin.symbol)" class="top-coin">
+<article @click="changeSelectedCoin(coin.symbol)" class="top-coin" :title="coin.name">
   <figure>
     <img :src="`static/img/coins/${coin.img}`"
          :key="coin.rank"
