@@ -23,7 +23,7 @@
         </div>
       </section>
       <section class="section">
-        <app-ChartData></app-ChartData>
+        <app-ChartData class="chart"></app-ChartData>
       </section>
       <section class="section">
         <div class="container">
@@ -160,5 +160,10 @@
   .price >.negative {
     color:red;
   }
+
+  .chart {
+    margin-bottom: 3em;
+  }
+
 
 </style>

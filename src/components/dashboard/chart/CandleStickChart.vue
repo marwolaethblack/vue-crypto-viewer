@@ -71,7 +71,11 @@
       }
     },
 
-    props: ['coinHistory']
+    props: ['coinHistory'],
+
+    destroyed() {
+      window.removeEventListener('resize', debounce(this.drawChart,300));
+    }
   }
 
 </script>

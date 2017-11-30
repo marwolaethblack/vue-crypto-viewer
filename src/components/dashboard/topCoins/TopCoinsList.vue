@@ -1,5 +1,6 @@
 <template>
   <section>
+    <h1>Top Coins</h1>
     <ol class="level is-mobile">
       <li v-for="coin in topCoins" class="level-item">
         <app-top-coin-list-item :coin="coin"

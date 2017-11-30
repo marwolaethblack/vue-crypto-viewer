@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h4>Show data from</h4>
-    <button v-for="type in chartTypes" @click="changeChartType(type)">{{ nicerChartTypeName(type) }}</button>
+    <h3>Show data from</h3>
+    <button class="button" v-for="type in chartTypes" @click="changeChartType(type)">{{ nicerChartTypeName(type) }}</button>
   </div>
 </template>
 
@@ -53,3 +53,10 @@
 
 
 </script>
+
+<style scoped>
+  .button {
+    background:#40ba84;
+    color:white;
+  }
+</style>

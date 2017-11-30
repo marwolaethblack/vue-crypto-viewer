@@ -1,17 +1,19 @@
 <template>
-<article @click="changeSelectedCoin(coin.symbol)" class="top-coin" :title="coin.name">
+<article  class="top-coin" :title="coin.name" @click="changeSelectedCoin(coin.symbol)">
   <figure>
     <img :src="`static/img/coins/${coin.img}`"
          :key="coin.rank"
          @error="imgError"
-         :alt="coin.name"/>
+         :alt="coin.name"
+         class="coin-img"
+    />
     <figcaption>
-      <p>{{ coin.symbol }}</p>
-      <p>{{ coin.name }}</p>
+      <h2>{{ coin.symbol }}</h2>
+      <h3>{{ coin.name }}</h3>
     </figcaption>
     <span>{{ price }}</span>
-    <router-link :to="`/coins/${coin.symbol}/details`">Details</router-link>
   </figure>
+  <router-link :to="`/coins/${coin.symbol}/details`">Details</router-link>
 </article>
 </template>
 
@@ -43,9 +45,20 @@
   }
 </script>
 
-<style>
+<style scoped>
+  .top-coin {
+    margin: 1em;
+    padding: 1em;
+  }
+
   .top-coin:hover {
     cursor: pointer;
     transform: scale(1.01);
+    box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+  }
+
+  .coin-img {
+    max-width: 150px;
+    max-height: 150px;
   }
 </style>

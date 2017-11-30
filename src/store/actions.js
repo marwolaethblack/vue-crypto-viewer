@@ -1,5 +1,6 @@
 import axios from 'axios';
 import debounce from '../helpers/debouncer';
+import throttle from '../helpers/debouncer';
 
 const delay = 250;
 
@@ -42,9 +43,7 @@ export const changeSelectedCoin = debounce(
 
 
 //Optional payload which is the coin symbol of the coin whose history you want to load
-export const fetchCoinHistory = debounce(
-
-  ({ commit, state }) => {
+export const fetchCoinHistory = ({ commit, state }) => {
 
     const { exchange, currency, chartType, selectedCoin } = state;
 
@@ -61,7 +60,7 @@ export const fetchCoinHistory = debounce(
         commit('loadItemFinished', 'coinHistory');
       })
 
-}, delay);
+};
 
 
 //Payload is the currency symbol e.g "DKK" "USD"
@@ -87,7 +86,7 @@ export const changeChartType = debounce(
   ({ commit, state }, payload) => {
 
     if(payload != state.chartType) {
-      commit('setChartType', payload.type);
+      commit('setChartType', payload);
 
       //Reloads graph with new data
       if(payload.coinToLoad) {
@@ -118,9 +117,7 @@ export const changeExchange = debounce(
 
 
 //Required payload which is the coin symbol e g "BTC"
-export const fetchCoinDetails = debounce(
-
-  ({ commit, state }, payload) => {
+export const fetchCoinDetails = ({ commit, state }, payload) => {
 
 
     const areCoinDetailsEmpty = !Object.keys(state.coinDetails).length;
@@ -140,7 +137,7 @@ export const fetchCoinDetails = debounce(
     }
 
 
-}, delay)
+};
 
 
 export const fetchAllCoins = debounce(

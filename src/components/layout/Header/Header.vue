@@ -71,4 +71,8 @@
   header {
     margin-bottom: 2em;
   }
+
+  .navbar-brand a {
+    color: white;
+  }
 </style>

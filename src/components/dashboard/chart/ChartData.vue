@@ -30,10 +30,10 @@
 
       percentChange() {
         if(this.coinHistory.Data.length) {
-          const oldPrice = this.coinHistory.Data[0].close;
+          const oldPrice = this.coinHistory.Data.find(x => x.close !== 0).close;
           const newPrice = this.coinHistory.Data[this.coinHistory.Data.length - 1].close;
           const change = ((newPrice -  oldPrice) / oldPrice) * 100;
-          return parseFloat(change).toFixed(2);
+          return parseFloat(change).toFixed(3);
         } else {
           return 0;
         }
@@ -69,7 +69,7 @@
   .percent-change {
     position: absolute;
     top: 11%;
-    left:80%;
+    right: 3%;
     z-index: 10;
     font-size: 1.3em;
   }
