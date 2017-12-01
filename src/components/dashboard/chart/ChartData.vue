@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  import { mapActions, mapGetters } from 'vuex';
+  import { mapGetters } from 'vuex';
   import Loader from '../../Loader.vue';
   import Chart from './CandleStickChart.vue';
   import ChartButtons from './ChartButtons.vue';
@@ -45,21 +45,10 @@
 
     },
 
-    methods: {
-      ...mapActions(['fetchCoinHistory'])
-    },
-
     components: {
       'app-loader': Loader,
       'app-Chart': Chart,
       'app-ChartButtons': ChartButtons
-    },
-
-    created() {
-      //Check if coinHistory loaded from API if not load
-      if(!this.coinHistory.hasOwnProperty('Data')) {
-        this.fetchCoinHistory();
-      }
     },
   }
 

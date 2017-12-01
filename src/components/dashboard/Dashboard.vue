@@ -10,11 +10,10 @@
   import TopCoinList from './topCoins/TopCoinsList.vue';
   import ChartData from './chart/ChartData.vue';
   export default {
-    created() {
-      if(this.topCoins.length < 10) {
-        this.fetchTopCoins();
-      }
+    created() {;
+      this.fetchTopCoins();
     },
+
     computed: {
       ...mapGetters([
         'topCoins'
