@@ -73,23 +73,12 @@
       this.coin = this.coin === 'BCC' ? "BCCOIN" : this.coin;
       this.coin = this.coin === 'MIOTA' ? 'IOT' : this.coin;
       this.changeSelectedCoin(this.coin);
+      this.connectSocket();
 
-      this.socket = io('wss://streamer.cryptocompare.com');
-      this.subscription = [`5~CCCAGG~${this.coin}~USD`];
-      this.socket.emit('SubAdd', { subs: this.subscription });
-      this.socket.on("m", message => {
-        const parsedData = parseWebSocketPriceData.CURRENT.unpack(message);
-        const priceChange = ((parseFloat(parsedData.PRICE) - parseFloat(this.socketData.PRICE)) / this.socketData.PRICE) * 100;
-        const percentChange = isNaN(parseFloat(priceChange).toFixed(5)) ? percentChange : parseFloat(priceChange).toFixed(5);
-        this.pricePercentChange = percentChange ? percentChange : this.pricePercentChange;
-
-        this.socketData = {...this.socketData, ...parsedData};
-      });
     },
 
     destroyed() {
-      this.socket.emit('SubRemove', { subs: this.subscription } );
-      this.socket.close();
+      this.disconnectSocket();
     },
 
 
@@ -131,13 +120,33 @@
       ...mapActions(['fetchCoinDetails', 'changeSelectedCoin']),
 
       hasLink(link) {
-        return typeof(link) == "string";
+        return typeof(link) === "string";
       },
 
       imgError(e) {
         e.target.src = "https://www.cryptocompare.com" + this.coinDataGeneral.ImageUrl;
         console.log("Switch to chrome to view .webp images");
+      },
+
+      connectSocket() {
+        this.socket = io('wss://streamer.cryptocompare.com');
+        this.subscription = [`5~CCCAGG~${this.coin}~USD`];
+        this.socket.emit('SubAdd', { subs: this.subscription });
+        this.socket.on("m", message => {
+          const parsedData = parseWebSocketPriceData.CURRENT.unpack(message);
+          const priceChange = ((parseFloat(parsedData.PRICE) - parseFloat(this.socketData.PRICE)) / this.socketData.PRICE) * 100;
+          const percentChange = isNaN(parseFloat(priceChange).toFixed(5)) ? percentChange : parseFloat(priceChange).toFixed(5);
+          this.pricePercentChange = percentChange ? percentChange : this.pricePercentChange;
+
+          this.socketData = {...this.socketData, ...parsedData};
+        });
+      },
+
+      disconnectSocket() {
+        this.socket.emit('SubRemove', { subs: this.subscription } );
+        this.socket.close();
       }
+
     },
 
     components: {

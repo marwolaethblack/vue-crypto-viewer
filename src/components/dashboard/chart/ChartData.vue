@@ -4,7 +4,7 @@
     <app-loader v-if="isCoinHistoryLoading" style="min-width: 98%; min-height: 65vh;"></app-loader>
     <div v-else style="width: 100%; height: 65vh; position:relative">
       <!--Chart-->
-      <span class="percent-change" :class="{ positive: percentChangPositive, negative: !percentChangPositive }">{{ percentChange + "%"}}</span>
+      <span class="percent-change" :class="{ positive: isPercentChangPositive, negative: !isPercentChangPositive }">{{ percentChange + "%"}}</span>
       <app-Chart :coinHistory="coinHistory" style="min-width: 98%; min-height: 100%;"></app-Chart>
       <!--Chart buttons e.g graph of prices of this week, month , year...-->
       <app-ChartButtons></app-ChartButtons>
@@ -39,7 +39,7 @@
         }
       },
 
-      percentChangPositive() {
+      isPercentChangPositive() {
         return parseFloat(this.percentChange)  > 0;
       },
 
