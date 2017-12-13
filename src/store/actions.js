@@ -1,6 +1,6 @@
 import axios from 'axios';
 import debounce from '../helpers/debouncer';
-import throttle from '../helpers/debouncer';
+import router from '../router';
 
 const delay = 250;
 
@@ -135,11 +135,10 @@ export const fetchCoinDetails = ({ commit, state }, payload) => {
 
       axios.get(`/api/coins/${payload}/details`)
         .then(response => {
-          commit('setCoinDetails', response.data);
-          commit('loadItemFinished', 'coinDetails');
+            commit('setCoinDetails', response.data);
+            commit('loadItemFinished', 'coinDetails');
         })
         .catch(error => {
-          console.log(error);
           commit('loadItemFinished', 'coinDetails');
         });
     }

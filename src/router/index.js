@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Dashboard from '@/components/dashboard/Dashboard.vue'
-const CoinDetails = () =>  import('@/components/CoinDetails.vue')
-const AllCoins = () => import('@/components/allCoins/AllCoins.vue')
+import Dashboard from '@/components/dashboard/DashboardPage.vue'
+const CoinDetails = () =>  import('@/components/coinDetails/CoinDetailsPage.vue')
+const AllCoins = () => import('@/components/allCoins/AllCoinsPage.vue')
 
 Vue.use(Router);
 
@@ -16,6 +16,7 @@ export default new Router({
       component: Dashboard
     },
     {
+      name: 'CoinDetails',
       path: '/coins/:coin/details',
       component: CoinDetails
     },
