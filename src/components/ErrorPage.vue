@@ -13,6 +13,8 @@
 
 <script>
   export default {
+
    props: ['Message']
+
   }
 </script>

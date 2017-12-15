@@ -10,11 +10,13 @@ Vue.use(Router);
 
 export default new Router({
   mode: 'history',
+  base: '/',
   routes: [
     {
       path: '/',
       name: 'Dashboard',
-      component: Dashboard
+      component: Dashboard,
+      alias: '/index.html'
     },
     {
       name: 'CoinDetails',
@@ -30,7 +32,7 @@ export default new Router({
       name: 'NotFound',
       path: '*',
       component: ErrorPage,
-      props: { Message: "Sorry. 404 Page not found. Try going back to the dashboard"}
+      props: { Message: "Sorry. 404 Page not found. Try going back to the dashboard" }
     }
   ]
 })
