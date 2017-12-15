@@ -12,6 +12,7 @@
   export default {
     created() {;
       this.fetchTopCoins();
+      this.changeSelectedCoin('BTC');
     },
 
     computed: {
@@ -21,7 +22,8 @@
     },
     methods: {
       ...mapActions([
-        'fetchTopCoins'
+        'fetchTopCoins',
+        'changeSelectedCoin'
       ])
     },
     components: {

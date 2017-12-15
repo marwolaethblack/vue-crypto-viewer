@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Dashboard from '@/components/dashboard/DashboardPage.vue'
 const CoinDetails = () =>  import('@/components/coinDetails/CoinDetailsPage.vue')
 const AllCoins = () => import('@/components/allCoins/AllCoinsPage.vue')
+const ErrorPage = () => import('@/components/ErrorPage.vue')
 
 Vue.use(Router);
 
@@ -24,6 +25,12 @@ export default new Router({
       name: 'AllCoins',
       path: '/coins/all',
       component: AllCoins
+    },
+    {
+      name: 'NotFound',
+      path: '*',
+      component: ErrorPage,
+      props: { Message: "Sorry. 404 Page not found. Try going back to the dashboard"}
     }
   ]
 })

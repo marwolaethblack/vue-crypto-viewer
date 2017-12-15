@@ -5,7 +5,6 @@
         <p>Oops we encountered an error</p>
       </div>
       <div class="message-body">
-        The error is:
         {{ Message }}
       </div>
     </article>
