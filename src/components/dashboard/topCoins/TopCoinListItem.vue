@@ -1,5 +1,5 @@
 <template>
-<article  class="top-coin" :title="coin.name" @click="changeSelectedCoin(coin.symbol)">
+<article  class="top-coin" :title="coin.name" @click="changeSelectedCoin(coin.symbol)" :class="{selected: selectedCoin === coin.symbol}">
   <figure>
     <img :src="`static/img/coins/${coin.img}`"
          :key="coin.rank"
@@ -24,7 +24,7 @@
     props: ['coin'],
 
     computed: {
-      ...mapGetters(['currency', 'exchange']),
+      ...mapGetters(['currency', 'exchange', 'selectedCoin']),
       price() {
         const parsedNumber = this.coin[`price_${this.currency.toLowerCase()}`];
         if(parsedNumber) {
@@ -60,5 +60,9 @@
   .coin-img {
     max-width: 150px;
     max-height: 150px;
+  }
+
+  .selected {
+    background: #e5eaec;
   }
 </style>

@@ -1,19 +1,23 @@
 <template>
   <div>
     <app-Loader v-if="isCoinDetailsLoading"></app-Loader>
-    <app-CoinInfo v-else
-                  :coinDetails="coinDetails"
-                  :coin="coin"
-                  :socketData="socketData"
-                  :pricePercentChange="pricePercentChange"
-    >
-    </app-CoinInfo>
+    <div v-else>
+      <app-ErrorPage v-if="!isCoinFound" :Message="coinDetails.Message"></app-ErrorPage>
+      <app-CoinInfo v-else
+                    :coinDetails="coinDetails"
+                    :coin="coin"
+                    :socketData="socketData"
+                    :pricePercentChange="pricePercentChange"
+      >
+      </app-CoinInfo>
+    </div>
   </div>
 </template>
 
 <script>
   import { mapActions, mapGetters } from 'vuex';
   import CoinInfo from './CoinInfo.vue';
+  import ErrorPage from '../ErrorPage.vue';
   import Loader from '../Loader.vue';
   import io from 'socket.io-client';
   import parseWebSocketPriceData from '../../helpers/parseWebSocketPriceData';
@@ -88,7 +92,8 @@
 
     components: {
       'app-Loader': Loader,
-      'app-CoinInfo': CoinInfo
+      'app-CoinInfo': CoinInfo,
+      'app-ErrorPage': ErrorPage
     },
 
   }
