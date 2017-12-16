@@ -20,5 +20,8 @@
 </script>
 
 <style>
+  .container.view {
+    min-height: 80vh;
+  }
 
 </style>

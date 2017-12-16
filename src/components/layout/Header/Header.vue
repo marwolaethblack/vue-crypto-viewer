@@ -2,11 +2,11 @@
   <header>
     <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-       <router-link to="/" tag="a">
+       <router-link to="/" tag="a" >
           <span>CryptoVuewer</span>
        </router-link>
         <router-link to="/coins/all?page=1" tag="a">
-          <span>AllCoins</span>
+          <span>See all coins</span>
         </router-link>
         <div class="navbar-burger burger" data-target="navMenuTransparentExample" @click="toggleDisplayMenu">
           <span></span>
@@ -74,5 +74,12 @@
 
   .navbar-brand a {
     color: white;
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+  }
+
+  .navbar-brand a:hover {
+    background: #252525;
   }
 </style>

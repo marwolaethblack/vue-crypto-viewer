@@ -8,10 +8,10 @@
          class="coin-img"
     />
     <figcaption>
-      <h2>{{ coin.symbol }}</h2>
+      <h2><strong>{{ coin.symbol }}</strong></h2>
       <h3>{{ coin.name }}</h3>
     </figcaption>
-    <span>{{ price }}</span>
+    <strong>{{ price }}</strong>
   </figure>
   <router-link :to="`/coins/${coin.symbol}/details`">Details</router-link>
 </article>
@@ -56,6 +56,7 @@
     transform: scale(1.01);
     box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
   }
+
 
   .coin-img {
     max-width: 150px;

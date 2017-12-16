@@ -18,7 +18,7 @@
       },
       size: {
         type: String,
-        default: '60px'
+        default: '100px'
       },
       margin: {
         type: String,
@@ -50,6 +50,14 @@
 </script>
 
 <style>
+  .v-spinner {
+    min-width: 100vw;
+    min-height: 100vh;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+  }
+
   .v-spinner .v-dot
   {
 
@@ -70,6 +78,7 @@
     position: 'absolute';
     top: 0;
     bottom: auto;
+
   }
   .v-spinner .v-dot3
   {
