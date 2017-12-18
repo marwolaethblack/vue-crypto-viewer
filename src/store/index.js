@@ -3,17 +3,17 @@ import Vuex from 'vuex';
 import * as mutations from './mutations';
 import * as actions from './actions';
 import * as getters from './getters';
+import exchangeModule from './modules/exchangeModule';
+import currencyModule from './modules/currencyModule';
+import chartModule from './modules/chartModule';
+import coinInfoModule from './modules/coinInfoModule';
+import popularCoinsModule from './modules/popularCoinsModule';
+
 
 Vue.use(Vuex);
 
 const state = {
-  topCoins: [],
-  currency: "USD",
-  selectedCoin: "BTC",
-  exchange: "CCCAGG",
   loading: [],
-  coinHistory: {},
-  chartType: 'month',
   coinDetails: {},
   allCoins: {}
 };
@@ -22,7 +22,15 @@ const store = new Vuex.Store({
   state,
   actions,
   mutations,
-  getters
+  getters,
+
+  modules: {
+    exchange: exchangeModule,
+    currency: currencyModule,
+    chart: chartModule,
+    coinInfo: coinInfoModule,
+    popularCoins: popularCoinsModule
+  }
 });
 
 export default store;

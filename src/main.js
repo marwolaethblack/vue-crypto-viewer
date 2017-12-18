@@ -17,7 +17,7 @@ new Vue({
   created() {
     //Load initial state from server
     this.$store.dispatch('fetchTopCoins');
-    this.$store.dispatch('fetchCoinHistory')
+    this.$store.dispatch('fetchCoinHistory');
   },
 
   render: h => h(App)

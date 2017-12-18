@@ -10,6 +10,7 @@
                     :pricePercentChange="pricePercentChange"
       >
       </app-CoinInfo>
+      <app-SocialStats></app-SocialStats>
     </div>
   </div>
 </template>
@@ -18,6 +19,7 @@
   import { mapActions, mapGetters } from 'vuex';
   import CoinInfo from './CoinInfo.vue';
   import ErrorPage from '../ErrorPage.vue';
+  import SocialStats from './SocialStats.vue';
   import Loader from '../Loader.vue';
   import io from 'socket.io-client';
   import parseWebSocketPriceData from '../../helpers/parseWebSocketPriceData';
@@ -93,7 +95,8 @@
     components: {
       'app-Loader': Loader,
       'app-CoinInfo': CoinInfo,
-      'app-ErrorPage': ErrorPage
+      'app-ErrorPage': ErrorPage,
+      'app-SocialStats': SocialStats
     },
 
   }
