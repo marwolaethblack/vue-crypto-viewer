@@ -1,7 +1,7 @@
 <template>
 <article  class="top-coin" :title="coin.name" @click="changeSelectedCoin(coin.symbol)" :class="{selected: selectedCoin === coin.symbol}">
   <figure>
-    <img :src="`static/img/coins/${coin.img}`"
+    <img :src="`static/img/coins/webp/${coin.img}`"
          :key="coin.rank"
          @error="imgError"
          :alt="coin.name"
@@ -19,6 +19,7 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex';
+  import webpSupport from '../../../helpers/hasWebpSupport';
   export default {
 
     props: ['coin'],
@@ -34,11 +35,19 @@
       }
     },
 
+
+    //If the browser does not support the WEBP format it loads a png image,
+    //If it does but the image still throws an error it loads the image from the api CDN
     methods: {
       ...mapActions(['changeSelectedCoin']),
-      imgError(e) {
-        e.target.src = "http://via.placeholder.com/180x180";
-        console.log("Switch to chrome to view .webp images");
+      async imgError(e) {
+        if(await webpSupport()) {
+          e.target.src = "http://via.placeholder.com/180x180";
+        } else {
+          const index = this.coin.img.indexOf('.');
+          const imageString = this.coin.img.substring(0, index != -1 ? index : this.coin.img.length);
+          e.target.src = `static/img/coins/png/${imageString}.png`;
+        }
       }
     }
 

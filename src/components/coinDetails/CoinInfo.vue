@@ -2,7 +2,7 @@
   <div>
     <section class="section">
       <div class="container">
-        <img :src="imageSource">
+        <img :src="imageSource" @error="imgError">
         <h1 class="title is-1">{{ coinDataGeneral.H1Text }}</h1>
         <a v-show="hasLink(coinDataGeneral.AffiliateUrl)" :href="coinDataGeneral.AffiliateUrl" target="_blank">Website</a>
         <a v-show="hasLink(coinDataIco.BlogLink)" :href="coinDataIco.BlogLink" target="_blank">Blog</a>
@@ -46,6 +46,7 @@
 
 <script>
   import ChartData from '../dashboard/chart/ChartData.vue'
+  import webpSupport from '../../helpers/hasWebpSupport'
 
   export default {
     props: ['coinDetails', 'coin', 'socketData', 'pricePercentChange'],
@@ -65,13 +66,8 @@
       },
 
       imageSource() {
-        let Name = this.coin;
-        const index = Name.indexOf('*');
-        if(index != -1) {
-          Name = Name.replace('*','');
-        }
-
-        return `/static/img/coins/${Name}.webp`;
+        const Name = this.fixCoinName(this.coin);
+        return `/static/img/coins/webp/${Name}.webp`;
 
       },
     },
@@ -81,10 +77,27 @@
         return typeof(link) === "string";
       },
 
-      imgError(e) {
-        e.target.src = "https://www.cryptocompare.com" + this.coinDataGeneral.ImageUrl;
-        console.log("Switch to chrome to view .webp images");
+      //Removes special characters from coin names, which are not present in image names so they can load
+      fixCoinName(coinName) {
+        let Name = coinName;
+        const index = Name.indexOf('*');
+        if(index != -1) {
+          Name = Name.replace('*','');
+        }
+
+        return Name;
       },
+
+      //If the browser does not support the WEBP format it loads a png image,
+      //If it does but the image still throws an error it loads the image from the api CDN
+      async imgError(e) {
+        if(await webpSupport()) {
+          e.target.src = "https://www.cryptocompare.com" + this.coinDataGeneral.ImageUrl;
+        } else {
+          let Name = this.fixCoinName(this.coin);
+          e.target.src = `/static/img/coins/png/${Name}.png`;
+        }
+      }
     },
 
     components: {

@@ -14,27 +14,41 @@
 </template>
 
 <script>
+  import webpSupport from '../../helpers/hasWebpSupport'
+
   export default {
     props: ['coin'],
 
     computed: {
       imageSource() {
         let { Name } = this.coin;
-        const index = Name.indexOf('*');
-        if(index != -1) {
-           Name = Name.replace('*','');
-        }
+        Name = this.fixCoinName(Name);
 
-        return `/static/img/coins/${Name}.webp`;
+        return `/static/img/coins/webp/${Name}.webp`;
 
       }
     },
 
     methods: {
-      imgError(e) {
-        e.target.src = "https://www.cryptocompare.com" + this.coin.ImageUrl;
-        console.log(this.coin.ImageUrl);
-        console.log("Switch to chrome to view .webp images");
+      fixCoinName(coinName) {
+        let Name = coinName;
+        const index = Name.indexOf('*');
+        if(index != -1) {
+          Name = Name.replace('*','');
+        }
+
+        return Name;
+      },
+
+      //If the browser does not support the WEBP format it loads a png image,
+      //If it does but the image still throws an error it loads the image from the api CDN
+      async imgError(e) {
+        if(await webpSupport()) {
+          e.target.src = "https://www.cryptocompare.com" + this.coin.ImageUrl;
+        } else {
+          let Name = this.fixCoinName(this.coin.Name);
+          e.target.src = `/static/img/coins/png/${Name}.png`;
+        }
       }
     }
   }

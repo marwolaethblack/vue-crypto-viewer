@@ -14,7 +14,6 @@ Vue.use(Vuex);
 
 const state = {
   loading: [],
-  coinDetails: {},
   allCoins: {}
 };
 
