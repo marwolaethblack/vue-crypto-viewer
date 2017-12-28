@@ -10,7 +10,6 @@
                     :pricePercentChange="pricePercentChange"
       >
       </app-CoinInfo>
-      <app-SocialStats :coin="coin"></app-SocialStats>
     </div>
   </div>
 </template>

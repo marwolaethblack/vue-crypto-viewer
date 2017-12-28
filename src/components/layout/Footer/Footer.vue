@@ -5,6 +5,7 @@
         <p>
           <strong>CryptoVuewer</strong>
         </p>
+        <p>API's used <a href="https://www.cryptocompare.com/api/" target="_blank">CryptoCompare</a> & <a href="https://coinmarketcap.com/api/" target="_blank">CoinMarketCap</a></p>
       </div>
     </div>
   </footer>

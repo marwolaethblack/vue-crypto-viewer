@@ -7,10 +7,7 @@
         <a v-show="hasLink(coinDataGeneral.AffiliateUrl)" :href="coinDataGeneral.AffiliateUrl" target="_blank">Website</a>
         <a v-show="hasLink(coinDataIco.BlogLink)" :href="coinDataIco.BlogLink" target="_blank">Blog</a>
         <a v-show="hasLink(coinDataIco.WhitePaperLink)" :href="coinDataIco.WhitePaperLink" target="_blank">WhitePaper</a>
-        <a v-show="hasLink(coinDataGeneral.Twitter)" :href="`https://twitter.com/${coinDataGeneral.Twitter}`" target="_blank">
-          Twitter
-          <i class="fa fa-twitter" aria-hidden="true"></i>
-        </a>
+        <app-coinSocialStats :coin="coin"></app-coinSocialStats>
         <p class="price" v-if="socketData.PRICE"><strong>{{ socketData.PRICE + " USD" }}</strong>
           <span :class="{ positive: isPercentChangePositive, negative: !isPercentChangePositive}">{{ pricePercentChange + "%" }}</span>
           <i class="fa fa-question" aria-hidden="true" title="Due to api restrictions real time price data is only offered in USD"></i>
@@ -47,6 +44,7 @@
 <script>
   import ChartData from '../dashboard/chart/ChartData.vue'
   import webpSupport from '../../helpers/hasWebpSupport'
+  import SocialStats from './SocialStats.vue'
 
   export default {
     props: ['coinDetails', 'coin', 'socketData', 'pricePercentChange'],
@@ -101,7 +99,8 @@
     },
 
     components: {
-      'app-ChartData': ChartData
+      'app-ChartData': ChartData,
+      'app-coinSocialStats': SocialStats
     }
 
   }
@@ -110,6 +109,7 @@
 <style scoped>
   .price {
     font-size: 2em;
+    padding: 20px 10px 10px 10px;
   }
 
   .price >.positive {

@@ -7,6 +7,7 @@
 <script>
   import { mapGetters } from 'vuex';
   import parseHistoryData from '../../../helpers/parseHistoryData';
+  import niceChartTypeName from '../../../helpers/niceChartTypeName';
   import debounce from '../../../helpers/debouncer';
 
   export default {
@@ -35,12 +36,12 @@
     },
 
     computed: {
-      ...mapGetters(['currency']),
+      ...mapGetters(['currency', 'chartType']),
 
       chartOptions() {
         const options = {
           legend: 'none',
-          title: `Open-high-low-close chart of ${this.coinHistory.CoinName} price`,
+          title: `Open-High-Low-Close Chart\n${this.coinHistory.CoinName} - ${this.currency}\n${niceChartTypeName(this.chartType)}`,
           chartArea: {
             width: '91%',
           },
@@ -69,6 +70,7 @@
       loadChart() {
         google.charts.setOnLoadCallback(this.drawChart);
       }
+
     },
 
     props: ['coinHistory'],

@@ -13,7 +13,7 @@
     </figcaption>
     <strong>{{ price }}</strong>
   </figure>
-  <router-link :to="`/coins/${coin.symbol}/details`">Details</router-link>
+  <router-link class="details" :to="`/coins/${coin.symbol}/details`">Show Details</router-link>
 </article>
 </template>
 
@@ -74,5 +74,9 @@
 
   .selected {
     background: #e5eaec;
+  }
+
+  .details {
+    font-size: 1.5em;
   }
 </style>
