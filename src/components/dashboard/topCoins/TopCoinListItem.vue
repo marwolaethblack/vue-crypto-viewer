@@ -11,7 +11,12 @@
       <h2><strong>{{ coin.symbol }}</strong></h2>
       <h3>{{ coin.name }}</h3>
     </figcaption>
-    <strong>{{ price }}</strong>
+    <strong class="price">{{ price }}</strong>
+    <strong title="Percent change in the past hour" 
+            :class="{positive: coin.percent_change_1h > 0, negative: coin.percent_change_1h < 0}"
+    >
+            {{ coin.percent_change_1h + "%"}}
+      </strong>
   </figure>
   <router-link class="details" :to="`/coins/${coin.symbol}/details`">Show Details</router-link>
 </article>
@@ -31,6 +36,10 @@
         if(parsedNumber) {
           const numberString = parsedNumber.toLocaleString();
           return numberString.substring(0, numberString.indexOf(".") + 4) + " " + this.currency;
+        } else {
+          const pN = this.coin[`price_usd`];
+          const nS = pN.toLocaleString();
+          return nS.substring(0, nS.indexOf(".") + 4) + " " + 'USD';
         }
       }
     },
@@ -56,7 +65,7 @@
 
 <style scoped>
   .top-coin {
-    margin: 1em;
+    margin: 0.2em;
     padding: 1em;
   }
 
@@ -68,8 +77,8 @@
 
 
   .coin-img {
-    max-width: 150px;
-    max-height: 150px;
+    max-width: 130px;
+    max-height: 130px;
   }
 
   .selected {
@@ -78,5 +87,18 @@
 
   .details {
     font-size: 1.5em;
+    margin-left: 2rem;
+  }
+  
+  .positive {
+    color: green;
+  }
+  
+  .negative {
+    color: red;
+  }
+  
+  .price {
+    font-size: 1.2em;
   }
 </style>
