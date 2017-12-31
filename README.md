@@ -6,7 +6,7 @@ You can browse cryptocurrencies view their price in real time, official websites
 It is also a progressive web app. You can add it to your homescreen on your phone to browse it as a near native app even without internet connection.
 
 It runs on a Node + Express server which serves static files and also serves as an API.
-[Server Repository](https://github.com/marwolaethblack/vue-crypto-viewer-server)
+[You can find it's source code here](https://github.com/marwolaethblack/vue-crypto-viewer-server)
 
 
 
