@@ -20,6 +20,7 @@
     },
 
     created() {
+      //Load google charts packages and add a listener to the resize event so the chart is responsive
       google.charts.load('current', {'packages': ['corechart']});
       window.addEventListener('resize', debounce(this.drawChart,300));
     },

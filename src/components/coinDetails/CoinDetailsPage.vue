@@ -39,6 +39,8 @@
     created() {
       this.coin = this.$route.params.coin;
       this.fetchCoinDetails(this.coin);
+      
+      //Changes coin name because of api differences
       this.coin = this.coin === 'BCC' ? "BCCOIN" : this.coin;
       this.coin = this.coin === 'MIOTA' ? 'IOT' : this.coin;
       this.changeSelectedCoin(this.coin);

@@ -1,3 +1,5 @@
+//Wraps a function so if it is called multiple times in a short timespan(the threshold argument) will only call the last function call
+
 export default function throttle(fn, threshhold, scope) {
   threshhold || (threshhold = 250);
   var last,

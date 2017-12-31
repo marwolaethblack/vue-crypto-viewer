@@ -1,4 +1,5 @@
 <template>
+  <!-- Renders the top 10 coins sorted by 24h volume -->
   <section class="top-coins content is-small">
     <h1 class="h1">Top 10 coins by 24h volume</h1>
     <ol class="level is-mobile">

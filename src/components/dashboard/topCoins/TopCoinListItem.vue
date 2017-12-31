@@ -12,7 +12,8 @@
       <h3>{{ coin.name }}</h3>
     </figcaption>
     <strong class="price">{{ price }}</strong>
-    <strong title="Percent change in the past hour" 
+    <strong title="Percent change in the past hour"
+            class="change"
             :class="{positive: coin.percent_change_1h > 0, negative: coin.percent_change_1h < 0}"
     >
             {{ coin.percent_change_1h + "%"}}
@@ -31,6 +32,8 @@
 
     computed: {
       ...mapGetters(['currency', 'exchange', 'selectedCoin']),
+      
+      //Rounds the price to 3 decimals and changes it into locale format
       price() {
         const parsedNumber = this.coin[`price_${this.currency.toLowerCase()}`];
         if(parsedNumber) {
@@ -45,10 +48,12 @@
     },
 
 
-    //If the browser does not support the WEBP format it loads a png image,
-    //If it does but the image still throws an error it loads the image from the api CDN
+    
     methods: {
       ...mapActions(['changeSelectedCoin']),
+      
+      //If the browser does not support the WEBP format it loads a png image,
+      //If it does but the image still throws an error it loads the image from the api CDN
       async imgError(e) {
         if(await webpSupport()) {
           e.target.src = "http://via.placeholder.com/180x180";
@@ -99,6 +104,10 @@
   }
   
   .price {
+    font-size: 1.5em;
+  }
+  
+  .change {
     font-size: 1.2em;
   }
 </style>

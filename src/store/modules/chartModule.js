@@ -1,3 +1,5 @@
+//Module for all Chart related data, functions.
+
 import axios from 'axios';
 import debounce from '../../helpers/debouncer';
 

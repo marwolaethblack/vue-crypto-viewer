@@ -1,4 +1,6 @@
+
 <template>
+  <!-- Renders the buttons to load charts for different time spans e.g price data for 1 week, 1 month... -->
   <div>
     <h3>Show data from</h3>
     <button class="button" v-for="type in chartTypes" @click="changeChartType(type)">{{ niceChartTypeName(type) }}</button>
