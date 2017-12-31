@@ -1,9 +1,12 @@
 # vue-crypto-viewer
 [Website](https://protected-fortress-92369.herokuapp.com)
 
->.A web app showing you inormation about the plethora of cryptocurrencies available. 
+A web app showing you inormation about the plethora of cryptocurrencies available. 
 You can browse cryptocurrencies view their price in real time, official websites, white papers, change in price over time on an OHLC chart.
-It is also a progressive web app. You can add it to your homescreen on your phone to browse it as a near native app even without internet connection
+It is also a progressive web app. You can add it to your homescreen on your phone to browse it as a near native app even without internet connection.
+
+It runs on a Node + Express server which serves static files and also serves as an API.
+[Server Repository]
 
 
 
