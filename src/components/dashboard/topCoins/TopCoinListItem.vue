@@ -39,7 +39,7 @@
         } else {
           const pN = this.coin[`price_usd`];
           const nS = pN.toLocaleString();
-          return nS.substring(0, nS.indexOf(".") + 4) + " " + 'USD';
+          return nS.substring(0, nS.indexOf(".") + 4) + " " + "USD";
         }
       }
     },

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="chart">
     <!--Either show loader or graph display component with menu-->
     <app-loader v-if="isCoinHistoryLoading" style="min-width: 98%; min-height: 65vh;"></app-loader>
     <div v-else style="width: 100%; height: 65vh; position:relative">
@@ -69,6 +69,10 @@
 
   .negative {
     color:red;
+  }
+  
+  .chart {
+    position: relative;
   }
 
 

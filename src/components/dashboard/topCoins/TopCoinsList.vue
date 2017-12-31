@@ -1,5 +1,5 @@
 <template>
-  <section class="top-coins content">
+  <section class="top-coins content is-small">
     <h1 class="h1">Top 10 coins by 24h volume</h1>
     <ol class="level is-mobile">
       <li v-for="coin in topCoins" class="level-item">
@@ -34,4 +34,5 @@
 .top-coins>h1 {
   text-align: center;
 }
+
 </style>
