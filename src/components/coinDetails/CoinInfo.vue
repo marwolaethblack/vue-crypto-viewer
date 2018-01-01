@@ -121,7 +121,7 @@
   }
 
   .chart {
-    margin-bottom: 100px;
+    margin-bottom: 200px;
   }
 
 

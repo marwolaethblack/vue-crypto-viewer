@@ -28,13 +28,14 @@ const parseData = (coinHistory, currency) => {
     }
 
     coinHistory.Data.forEach(priceData => {
+      //Volumefrom is the volume in the cryptocurrency e.g. volumefrom would be 2622BTC
+      //Volumeto is the volume in the fiat currency e.g volumeto would be 245 546 212 USD
       const {volumeto, volumefrom} = priceData;
       const date = moment.unix(priceData.time).format(format);
-      data.push([date, volumeto, volumefrom]);
+      data.push([date, volumeto]);
     });
     
-    data.unshift(['Date', 'Volume To', 'Volume From']);
-    console.log(data);
+    data.unshift(['Date', 'Volume']);
 
     return data;
 }

@@ -41,13 +41,12 @@
 
       chartOptions() {
         const options = {
-            title: `Volume bar chart ${this.coinHistory.CoinName} - ${this.currency}`,
+            title: `Volume bar chart of ${this.coinHistory.CoinName} in ${this.currency}`,
             subtitle: `${niceChartTypeName(this.chartType)}`,
           
           hAxis: {
              isSlanted:true
           },
-          isStacked: 'true',
           legend: {
               position: 'top'
           },

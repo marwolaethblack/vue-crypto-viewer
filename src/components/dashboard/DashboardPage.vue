@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-topCoinList :topCoins="topCoins"></app-topCoinList>
-    <app-chartData></app-chartData>
+    <app-chartData class="chart"></app-chartData>
   </div>
 </template>
 
@@ -33,6 +33,8 @@
   }
 </script>
 
-<style>
-
+<style scoped>
+  .chart {
+    margin-bottom: 450px;
+  }
 </style>

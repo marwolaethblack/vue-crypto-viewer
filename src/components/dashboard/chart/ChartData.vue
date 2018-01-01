@@ -76,7 +76,6 @@
   
   .chart {
     position: relative;
-    margin-bottom:400px;
   }
 
 
