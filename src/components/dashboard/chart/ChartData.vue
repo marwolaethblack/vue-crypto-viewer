@@ -1,11 +1,12 @@
 <template>
   <div class="chart">
     <!--Either show loader or graph display component with menu-->
-    <app-loader v-if="isCoinHistoryLoading" style="min-width: 98%; min-height: 65vh;"></app-loader>
-    <div v-else style="width: 100%; height: 65vh; position:relative">
+    <app-loader v-if="isCoinHistoryLoading" style="min-width: 98%; min-height: 80vh;"></app-loader>
+    <div v-else style="width: 100%; height: 80vh; position:relative">
       <!--Chart-->
       <span class="percent-change" :class="{ positive: isPercentChangPositive, negative: !isPercentChangPositive }">{{ percentChange + "%"}}</span>
-      <app-Chart :coinHistory="coinHistory" style="min-width: 98%; min-height: 100%;"></app-Chart>
+      <app-Chart :coinHistory="coinHistory" style="min-width: 98%; min-height: 80%;"></app-Chart>
+      <app-VolumeChart :coinHistory="coinHistory" style="min-width: 98%; min-height: 300px;"></app-VolumeChart>
       <!--Chart buttons e.g graph of prices of this week, month , year...-->
       <app-ChartButtons></app-ChartButtons>
     </div>
@@ -16,6 +17,7 @@
   import { mapGetters } from 'vuex';
   import Loader from '../../Loader.vue';
   import Chart from './CandleStickChart.vue';
+  import VolumeChart from './BarVolumeChart.vue';
   import ChartButtons from './ChartButtons.vue';
 
   export default {
@@ -48,6 +50,7 @@
     components: {
       'app-loader': Loader,
       'app-Chart': Chart,
+      'app-VolumeChart': VolumeChart,
       'app-ChartButtons': ChartButtons
     },
   }
@@ -73,6 +76,7 @@
   
   .chart {
     position: relative;
+    margin-bottom:400px;
   }
 
 
