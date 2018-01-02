@@ -1,22 +1,32 @@
 const niceChartTypeName = (type) => {
   switch(type) {
     case 'month': {
-      return 'Last 30 days';
+      return 'Past 30 days';
       break;
     }
 
     case '24h': {
-      return 'Last 24 hours';
+      return 'Past 24 hours';
+      break;
+    }
+    
+    case 'week': {
+      return 'Past 7 days';
+      break;
+    }
+    
+    case '2weeks': {
+      return 'Past 14 days';
       break;
     }
 
     case '6months': {
-      return 'Last 6 months';
+      return 'Past 6 months';
       break;
     }
 
     case 'year': {
-      return 'Last year';
+      return 'Past year';
       break;
     }
 

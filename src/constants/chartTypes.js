@@ -1,2 +1,2 @@
-const chartTypes = ['month', '24h', '6months', 'year', 'all'];
+const chartTypes = ['24h', 'week', '2weeks', 'month', '6months', 'year', 'all'];
 export default chartTypes;
