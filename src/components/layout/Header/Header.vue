@@ -16,14 +16,16 @@
       </div>
       <div class="navbar-menu" ref="menu">
         <div class="navbar-end">
-          <app-currencyDropdown :currency="currency"
-                                :changeCurrency="changeCurrency"
-                                :currencies="currencies"
-          ></app-currencyDropdown>
-          <app-exchangeDropdown :exchange="exchange"
-                                :changeExchange="changeExchange"
-                                :exchanges="exchanges"
-          ></app-exchangeDropdown>
+           <app-Dropdown :currentSelection="currency"
+                         :dropDownData="currencies"
+                         :changeSelection="changeCurrency">
+            <span slot="dropDownName">Currency &nbsp;</span>
+          </app-Dropdown>
+          <app-Dropdown :currentSelection="exchange"
+                        :dropDownData="exchanges"
+                        :changeSelection="changeExchange">
+            <span slot="dropDownName">Exchange &nbsp;</span>
+          </app-Dropdown>
         </div>
       </div>
     </nav>
@@ -32,8 +34,7 @@
 
 <script>
   import { mapActions, mapGetters } from 'vuex';
-  import CurrencyDropdown from './CurrencyDropdown.vue';
-  import ExchangeDropdown from './ExchangeDropdown.vue';
+  import Dropdown from './Dropdown.vue';
   import currencies from '../../../constants/currencies';
   import exchanges from '../../../constants/exchanges';
 
@@ -60,8 +61,7 @@
     },
 
     components: {
-      'app-currencyDropdown': CurrencyDropdown,
-      'app-exchangeDropdown': ExchangeDropdown
+      'app-Dropdown': Dropdown
     }
 
   }

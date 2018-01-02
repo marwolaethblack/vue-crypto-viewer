@@ -5,14 +5,10 @@ import debounce from '../../helpers/debouncer';
 
 const delay = 250;
 
-let cacheDate = Date.now() - 370000;
 //Payload is the currency symbol e.g. "USD" "DKK"
 const fetchTopCoins = debounce(
 
-  ({ commit, state }, payload) => {
-
-    //only load top coins every 3 minutes
-    if(Date.now() - cacheDate > (60000 * 3)) {
+  ({ commit, state, rootState }, payload) => {
 
       commit('loadItem', 'topCoins');
       const currency = payload || 'USD';
@@ -25,10 +21,8 @@ const fetchTopCoins = debounce(
         .catch(error => {
           console.log(error);
           commit('loadItemFinished', 'topCoins');
+          
         });
-
-      cacheDate = Date.now();
-    }
   }, delay);
 
 
