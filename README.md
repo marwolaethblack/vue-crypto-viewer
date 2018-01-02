@@ -1,5 +1,5 @@
 # vue-crypto-viewer
-[Website](https://protected-fortress-92369.herokuapp.com)
+[Website](https://cryptovuewer.herokuapp.com/)
 
 A web app showing you inormation about the plethora of cryptocurrencies available. 
 You can browse cryptocurrencies view their price in real time, official websites, white papers, change in price over time on an OHLC chart.
