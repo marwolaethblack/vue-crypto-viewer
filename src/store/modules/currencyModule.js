@@ -14,7 +14,7 @@ const changeCurrency = debounce(
       commit('setCurrency', payload);
 
       //Reloads top coins with new currency
-      dispatch('fetchTopCoins', payload);
+      dispatch('fetchTopCoins');
 
       //Reloads coin price graphs with new currency
       dispatch('fetchCoinHistory');

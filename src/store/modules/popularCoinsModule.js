@@ -8,10 +8,10 @@ const delay = 250;
 //Payload is the currency symbol e.g. "USD" "DKK"
 const fetchTopCoins = debounce(
 
-  ({ commit, state, rootState }, payload) => {
+  ({ commit, state, rootState }) => {
 
       commit('loadItem', 'topCoins');
-      const currency = payload || 'USD';
+      const currency = rootState.currency.selectedCurrency;
 
       axios.get(`/api/coins/top?currency=${currency}`)
         .then(result => {
