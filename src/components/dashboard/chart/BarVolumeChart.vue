@@ -26,8 +26,8 @@
     },
 
     mounted() {
-      const { Response } = this.coinHistory;
-      if(Response === 'Error') {
+      const { Response, Data } = this.coinHistory;
+      if(Response === 'Error' || Data.length < 1) {
         this.error = "Volume chart not available. The market does not exist for this coin pair, try changing the exchange or currency";
       } else {
         this.error = "";
